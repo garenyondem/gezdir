@@ -13,8 +13,7 @@ var User = require('../models/user');
 router.post('/login', (req, res) => {
     var projection = {
         _id: 0,
-        password: 0,
-        email: 0
+        password: 0
     }
     User.findOne(
         {
