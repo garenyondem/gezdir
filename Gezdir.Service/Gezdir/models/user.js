@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    constants = require('../resources/constants');
 
 var UserSchema = new mongoose.Schema({
     nameSurname: String,
@@ -7,6 +8,6 @@ var UserSchema = new mongoose.Schema({
     token: String
 }, { versionKey: false });
 
-mongoose.model('User', UserSchema, 'Users');
+mongoose.model('User', UserSchema, constants.collectionNames.Users);
 
 module.exports = mongoose.model('User');
