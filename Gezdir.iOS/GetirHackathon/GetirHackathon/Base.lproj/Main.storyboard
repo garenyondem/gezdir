@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Kg-dS-dzb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,20 +30,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sRC-2u-tEb">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="aleksmutlu@gmail.com" borderStyle="roundedRect" placeholder="Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sRC-2u-tEb">
                                         <rect key="frame" x="0.0" y="39" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="1Ip-oK-xt0"/>
                                             <constraint firstAttribute="height" constant="40" id="KUZ-Sx-Hb9"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txa-81-CMs">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txa-81-CMs">
                                         <rect key="frame" x="0.0" y="89" width="200" height="40"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUx-Ol-Br4">
@@ -79,7 +79,88 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="1887" y="889"/>
+        </scene>
+        <!--Gezdir-->
+        <scene sceneID="5UM-jJ-oq1">
+            <objects>
+                <viewController id="M6C-dd-IlK" customClass="MapViewController" customModule="GetirHackathon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jiy-lO-dgN"/>
+                        <viewControllerLayoutGuide type="bottom" id="EHk-iO-AIl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ksc-U7-Gpj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="q1s-Sg-rb5">
+                                <rect key="frame" x="16" y="72" width="343" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vl4-Yq-Hn6">
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vl4-Yq-Hn6" firstAttribute="top" secondItem="q1s-Sg-rb5" secondAttribute="bottom" constant="8" id="1we-Zw-NHO"/>
+                            <constraint firstItem="Vl4-Yq-Hn6" firstAttribute="leading" secondItem="ksc-U7-Gpj" secondAttribute="leading" id="F9T-OJ-Pyd"/>
+                            <constraint firstItem="q1s-Sg-rb5" firstAttribute="leading" secondItem="ksc-U7-Gpj" secondAttribute="leading" constant="16" id="G6U-3G-Y1z"/>
+                            <constraint firstItem="q1s-Sg-rb5" firstAttribute="top" secondItem="Jiy-lO-dgN" secondAttribute="bottom" constant="8" id="Ur0-FB-TRf"/>
+                            <constraint firstAttribute="trailing" secondItem="q1s-Sg-rb5" secondAttribute="trailing" constant="16" id="aIu-Wu-ir4"/>
+                            <constraint firstItem="EHk-iO-AIl" firstAttribute="top" secondItem="Vl4-Yq-Hn6" secondAttribute="bottom" id="fQ7-uh-r8H"/>
+                            <constraint firstAttribute="trailing" secondItem="Vl4-Yq-Hn6" secondAttribute="trailing" id="jBP-zz-GdE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Gezdir" id="REw-zE-mpy"/>
+                    <connections>
+                        <outlet property="mapView" destination="Vl4-Yq-Hn6" id="n67-zK-A7t"/>
+                        <outlet property="segmentControl" destination="q1s-Sg-rb5" id="4Ok-2y-6t6"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="sgLogin" id="J49-gp-tq6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8I-d0-zVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1887.2" y="139.880059970015"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YeC-iO-9qM">
+            <objects>
+                <viewController id="6te-9S-SBC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uMd-KA-DZc"/>
+                        <viewControllerLayoutGuide type="bottom" id="IOZ-8L-W9I"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mQ6-Js-a0C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbL-E0-VqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2766" y="140"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Tlf-F0-Ko1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Kg-dS-dzb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZDI-fC-rhu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="M6C-dd-IlK" kind="relationship" relationship="rootViewController" id="z3r-xE-haD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8JX-nf-6Tx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="948" y="140.77961019490255"/>
         </scene>
     </scenes>
 </document>

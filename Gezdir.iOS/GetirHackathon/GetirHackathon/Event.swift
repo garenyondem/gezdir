@@ -8,8 +8,14 @@
 
 import Foundation
 
-struct Event {
+class Event {
     
     var name: String
     
+    var annotation: EventAnnotation?
+    
+    
+    init(name: String) {
+        self.name = name
+    }
 }

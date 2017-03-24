@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class API: NSObject {
     
-    typealias NetworkResult = (Any?, RequestError) -> Void
+    typealias NetworkResult = (Any?, RequestError?) -> Void
     
     static let shared = API()
     fileprivate let defaultSession: URLSession
-    fileprivate let baseUrl: String = ""
+    fileprivate let baseUrl: String = "http://gezdir.com"
     
     private override init() {
         let configuration = URLSessionConfiguration.default
@@ -28,16 +29,19 @@ class API: NSObject {
 extension API {
     enum Endpoints {
         case login(mail: String, password: String)
+        case events(around: CLLocationCoordinate2D, userType: Int)
         
         var method: String {
             switch self {
             case .login: return RequestType.post.rawValue
+            case .events: return RequestType.get.rawValue
             }
         }
         
         var path: String {
             switch self {
-            case .login: return "POST"
+            case .login: return "/user/login"
+            case .events: return "/event"
             }
         }
         
@@ -48,17 +52,30 @@ extension API {
             case .login(let mail, let password) :
                 parameters["email"] = mail
                 parameters["password"] = password
+            case .events(let location, let userType):
+                // TODO:
+                parameters[""] = ""
+                parameters[""] = ""
+                parameters[""] = ""
             }
             
             return parameters
+        }
+        
+        var needsAuthorization: Bool {
+            switch self {
+            case .login: return false
+            case .events: return true
+            }
         }
     }
     
     enum RequestError: Error {
         case invalidUrl
         case clientSide
-        case serverSide
+        case serverSide(message: String)
         case parse
+        case wrongCredentials
     }
     
     enum RequestType: String {
@@ -78,26 +95,40 @@ extension API {
         var request = URLRequest(url: url)
         request.timeoutInterval = 60
         request.httpMethod = endpoint.method
+        
+        if  endpoint.needsAuthorization,
+            let token = User.current?.token {
+            //request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            request.addValue(token, forHTTPHeaderField: "Token")
+        }
+        request.addValue("Tokenasdadasdas", forHTTPHeaderField: "Token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = try? JSONSerialization.data(withJSONObject: endpoint.parameters, options: .init(rawValue: 0))
         self.defaultSession.dataTask(with: request) { data, response, error in
-            guard error != nil else {
+            guard error == nil else { // Client Error
                 completion(nil, .clientSide)
                 return
             }
             
             guard (response as! HTTPURLResponse).statusCode == 200 else {
-                completion(nil, .serverSide)
+                if  let jsonObject = try? JSONSerialization.jsonObject(with: data!, options: []),
+                    let json = jsonObject as? [String: Any],
+                    let message = json["errorMessage"] as? String {
+                    completion(nil, .serverSide(message: NSLocalizedString(message, comment: "")))
+                }
+                else {
+                    completion(nil, .serverSide(message: NSLocalizedString("an_error_occured", comment: "")))
+                }
                 return
             }
             
-            guard let json = try? JSONSerialization.jsonObject(with: data!, options:[]) else {
+            guard let jsonObject = try? JSONSerialization.jsonObject(with: data!, options:[]) else {
                 completion(nil, .parse)
                 return
             }
             
-            completion(json, nil)
+            completion(jsonObject, nil)
             
         }.resume()
     }
@@ -113,9 +144,5 @@ extension API {
         return urlComponent?.url
     }
 }
-
-
-
-
 
 

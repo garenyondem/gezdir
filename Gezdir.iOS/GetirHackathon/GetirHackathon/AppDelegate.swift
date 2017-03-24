@@ -7,19 +7,24 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    var locationManager: CLLocationManager!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        self.locationManager = CLLocationManager()
+        self.locationManager.requestWhenInUseAuthorization()
         
         if  let nameSurname = UserDefaults.standard.value(forKey: kNameSurname) as? String,
             let mail = UserDefaults.standard.value(forKey: kMail) as? String,
-            let password = UserDefaults.standard.value(forKey: kPassword) as? String {
-              User.current = User(nameSurname: nameSurname, mail: mail, password: password)
+            let token = UserDefaults.standard.value(forKey: kToken) as? String {
+              User.current = User(nameSurname: nameSurname, mail: mail, token: token)
         }
         
         return true
