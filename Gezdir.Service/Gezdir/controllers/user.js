@@ -3,7 +3,9 @@
 var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
-    _is = require('is_js');
+    _is = require('is_js'),
+    error = require('../helpers/error'),
+    constants = require('../resources/constants');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -25,7 +27,7 @@ router.post('/login', (req, res) => {
             if (!err && _is.existy(user)) {
                 res.status(200).send(user);
             } else {
-                res.status(500).send('unable_to_find_user');
+                res.status(500).send(error(constants.errorCodes.unableToFindUser));
             }
         });
 });
