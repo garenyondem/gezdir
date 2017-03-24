@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose'),
     constants = require('../resources/constants');
 
