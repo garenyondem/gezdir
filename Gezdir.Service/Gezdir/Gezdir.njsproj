@@ -38,6 +38,9 @@
     <Compile Include="db\db.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="helpers\error.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="models\user.js" />
     <Compile Include="resources\constants.js">
       <SubType>Code</SubType>
