@@ -25,7 +25,7 @@ router.post('/login', (req, res) => {
             if (!err && _is.existy(user)) {
                 res.status(200).send(user);
             } else {
-                res.status(500).send('There was a problem finding the user');
+                res.status(500).send('unable_to_find_user');
             }
         });
 });
