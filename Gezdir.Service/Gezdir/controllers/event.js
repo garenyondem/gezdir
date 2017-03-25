@@ -62,6 +62,9 @@ router.get('/', authenticate, (req, res) => {
         return kms / constants.earthRadiusKm;
     }
     var query = {
+        expirationDate: {
+            $gt: new Date()
+        },
         location: {
             $geoWithin: {
                 $centerSphere: [
