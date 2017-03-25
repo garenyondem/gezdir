@@ -62,6 +62,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="server.js" />
+    <Compile Include="utilities\log.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
@@ -71,6 +72,7 @@
     <Folder Include="models\" />
     <Folder Include="helpers\" />
     <Folder Include="localization\" />
+    <Folder Include="utilities\" />
     <Folder Include="resources\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
