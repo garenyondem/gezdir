@@ -75,14 +75,16 @@ router.post('/', authenticate, (req, res) => {
 
 // returns nearby events
 router.get('/', authenticate, (req, res) => {
-    var userLocation = [
-        req.query.longitude,
-        req.query.latitude
-    ];
+    var groupType = req.query.groupType,
+        userLocation = [
+            req.query.longitude,
+            req.query.latitude
+        ];
     function toRadian(kms) {
         return kms / constants.earthRadiusKm;
     }
     var query = {
+        groupType: groupType,
         expirationDate: {
             $gt: new Date()
         },
