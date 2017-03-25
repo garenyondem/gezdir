@@ -13,7 +13,8 @@ const errorCodes = {
     unableToFindUser: 'unable_to_find_user',
     unableToCreateEvent: 'unable_to_create_event',
     unableToFindEvent: 'unable_to_find_event',
-    unableToFindEventsNearby: 'unable_to_find_events_nearby'
+    unableToFindEventsNearby: 'unable_to_find_events_nearby',
+    unableToGetEventTypes: 'unable_to_get_event_types'
 }
 
 const earthRadiusKm = 6371;

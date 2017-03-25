@@ -37,6 +37,7 @@
     <Compile Include="controllers\event.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="controllers\eventType.js" />
     <Compile Include="controllers\user.js" />
     <Compile Include="db\db.js">
       <SubType>Code</SubType>
@@ -52,6 +53,7 @@
     <Compile Include="models\event.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="models\eventType.js" />
     <Compile Include="models\user.js" />
     <Compile Include="resources\constants.js">
       <SubType>Code</SubType>
