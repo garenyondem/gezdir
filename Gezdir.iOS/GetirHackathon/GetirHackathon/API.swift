@@ -28,20 +28,26 @@ class API: NSObject {
 // MARK: - Enums
 extension API {
     enum Endpoints {
-        case login(mail: String, password: String)
+        case login(mail: String, password: String, language: String)
         case events(around: CLLocationCoordinate2D, userType: Int)
+        case event(id: Int)
+        case createEvent(event: Event)
         
         var method: String {
             switch self {
             case .login: return RequestType.post.rawValue
             case .events: return RequestType.get.rawValue
+            case .event: return RequestType.get.rawValue
+            case .createEvent: return RequestType.post.rawValue
             }
         }
         
         var path: String {
             switch self {
             case .login: return "/user/login"
-            case .events: return "/event"
+            case .events: return "/events"
+            case .event(let id): return "/events/\(id)"
+            case .createEvent: return "/events"
             }
         }
         
@@ -49,14 +55,24 @@ extension API {
             var parameters = [String: Any]()
             
             switch self {
-            case .login(let mail, let password) :
+            case .login(let mail, let password, let language):
                 parameters["email"] = mail
                 parameters["password"] = password
+                parameters["language"] = language
             case .events(let location, let userType):
-                // TODO:
                 parameters[""] = ""
                 parameters[""] = ""
                 parameters[""] = ""
+            case .event:
+                parameters[""] = ""
+            case .createEvent(let event):
+                parameters["name"] = event.name
+                parameters["creationDate"] = event.creationDate.forApiFormatedString
+                parameters["expirationDate"] = event.expirationDate.forApiFormatedString
+                parameters["eventType"] = event.eventType.key
+                parameters["groupType"] = event.groupType.rawValue
+                parameters["coordinates"] = [event.location.latitude, event.location.longitude]
+                parameters["quota"] = event.quota
             }
             
             return parameters
@@ -65,7 +81,7 @@ extension API {
         var needsAuthorization: Bool {
             switch self {
             case .login: return false
-            case .events: return true
+            default: return true
             }
         }
     }
@@ -101,7 +117,6 @@ extension API {
             //request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.addValue(token, forHTTPHeaderField: "Token")
         }
-        request.addValue("Tokenasdadasdas", forHTTPHeaderField: "Token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = try? JSONSerialization.data(withJSONObject: endpoint.parameters, options: .init(rawValue: 0))

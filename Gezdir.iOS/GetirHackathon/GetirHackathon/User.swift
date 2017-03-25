@@ -35,7 +35,7 @@ struct User {
     }
     
     init(nameSurname: String = "", mail: String, token: String) {
-        self.nameSurname = nil
+        self.nameSurname = nameSurname
         self.mail = mail
         self.token = token
     }

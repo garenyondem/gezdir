@@ -11,6 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+    @IBAction func rewindToMapVC(segue: UIStoryboardSegue) {}
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     @IBOutlet weak var mapView: MKMapView!
@@ -25,9 +26,7 @@ class MapViewController: UIViewController {
             self.performSegue(withIdentifier: "sgLogin", sender: nil)
             return
         }
-        
-        self.eventList = [Event(name: "asd")]
-        
+    
         self.refreshEvents()
     }
     
@@ -38,6 +37,7 @@ class MapViewController: UIViewController {
     private func refreshEvents() {
         //Event.events(around: <#T##CLLocationCoordinate2D#>, for: <#T##Int#>, completion: <#T##([Event], API.RequestError) -> Void#>)
     }
+
 }
 
 // MARK: - Functions 

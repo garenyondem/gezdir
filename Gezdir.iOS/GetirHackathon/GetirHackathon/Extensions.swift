@@ -6,8 +6,8 @@
 //  Copyright © 2017 Mutlu. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import MapKit
 
 extension Notification.Name {
     
@@ -23,4 +23,28 @@ extension UIViewController {
         alertController.addAction(actionOk)
         self.present(alertController, animated: true, completion: nil)
     }
+}
+
+extension Date {
+    
+    var forApiFormatedString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyy-MM-dd hh:mm:ss"
+        return dateFormatter.string(from: self)
+    }
+    
+    var forDateSelectionString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM hh:mm"
+        return dateFormatter.string(from: self)
+    }
+}
+
+extension MKMapView {
+    
+    func removeAllEvents() {
+        self.removeOverlays(self.overlays)
+        self.removeAnnotations(self.annotations)
+    }
+    
 }

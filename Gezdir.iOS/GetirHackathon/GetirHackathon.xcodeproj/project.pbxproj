@@ -13,6 +13,10 @@
 		593A41AE1E85B127008A1CBD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41AD1E85B127008A1CBD /* MapViewController.swift */; };
 		593A41B01E85B8A3008A1CBD /* EventAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41AF1E85B8A3008A1CBD /* EventAnnotation.swift */; };
 		593A41B21E85BD46008A1CBD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41B11E85BD46008A1CBD /* Extensions.swift */; };
+		593A41B41E85E293008A1CBD /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41B31E85E293008A1CBD /* EventType.swift */; };
+		593A41BA1E85F136008A1CBD /* CreateEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41B91E85F136008A1CBD /* CreateEventTableViewController.swift */; };
+		593A41BC1E85F146008A1CBD /* SelectDateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41BB1E85F146008A1CBD /* SelectDateTableViewController.swift */; };
+		593A41BE1E85F156008A1CBD /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41BD1E85F156008A1CBD /* SelectAddressViewController.swift */; };
 		593F39141E85926C0027BE0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F39131E85926C0027BE0C /* AppDelegate.swift */; };
 		593F39191E85926C0027BE0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 593F39171E85926C0027BE0C /* Main.storyboard */; };
 		593F391B1E85926C0027BE0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 593F391A1E85926C0027BE0C /* Assets.xcassets */; };
@@ -29,6 +33,10 @@
 		593A41AD1E85B127008A1CBD /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		593A41AF1E85B8A3008A1CBD /* EventAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAnnotation.swift; sourceTree = "<group>"; };
 		593A41B11E85BD46008A1CBD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		593A41B31E85E293008A1CBD /* EventType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		593A41B91E85F136008A1CBD /* CreateEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventTableViewController.swift; sourceTree = "<group>"; };
+		593A41BB1E85F146008A1CBD /* SelectDateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDateTableViewController.swift; sourceTree = "<group>"; };
+		593A41BD1E85F156008A1CBD /* SelectAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		593F39101E85926C0027BE0C /* GetirHackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetirHackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		593F39131E85926C0027BE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		593F39181E85926C0027BE0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,8 +82,19 @@
 			children = (
 				593A41AA1E85A6EF008A1CBD /* LoginViewController.swift */,
 				593A41AD1E85B127008A1CBD /* MapViewController.swift */,
+				593A41B91E85F136008A1CBD /* CreateEventTableViewController.swift */,
+				593A41BB1E85F146008A1CBD /* SelectDateTableViewController.swift */,
+				593A41BD1E85F156008A1CBD /* SelectAddressViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		593A41B51E85E3BE008A1CBD /* EventType */ = {
+			isa = PBXGroup;
+			children = (
+				593A41B31E85E293008A1CBD /* EventType.swift */,
+			);
+			name = EventType;
 			sourceTree = "<group>";
 		};
 		593F39071E85926B0027BE0C = {
@@ -116,6 +135,7 @@
 			children = (
 				593A41A61E85A201008A1CBD /* User */,
 				593A41A91E85A21E008A1CBD /* Event */,
+				593A41B51E85E3BE008A1CBD /* EventType */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -196,6 +216,10 @@
 				593F39281E859F400027BE0C /* User.swift in Sources */,
 				593A41A81E85A20D008A1CBD /* Event+Services.swift in Sources */,
 				593A41B01E85B8A3008A1CBD /* EventAnnotation.swift in Sources */,
+				593A41BE1E85F156008A1CBD /* SelectAddressViewController.swift in Sources */,
+				593A41BC1E85F146008A1CBD /* SelectDateTableViewController.swift in Sources */,
+				593A41B41E85E293008A1CBD /* EventType.swift in Sources */,
+				593A41BA1E85F136008A1CBD /* CreateEventTableViewController.swift in Sources */,
 				593F39261E85929A0027BE0C /* API.swift in Sources */,
 				593A41AB1E85A6EF008A1CBD /* LoginViewController.swift in Sources */,
 				593A41B21E85BD46008A1CBD /* Extensions.swift in Sources */,

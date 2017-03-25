@@ -12,7 +12,7 @@ extension User {
     typealias LoginResult = (_ error: API.RequestError?) -> Void
     
     func login(completion: @escaping LoginResult) {
-        API.shared.request(endpoint: .login(mail: self.mail, password: self.password!)) { (jsonObject, error) in
+        API.shared.request(endpoint: .login(mail: self.mail, password: self.password!, language: Locale.current.languageCode!.lowercased())) { (jsonObject, error) in
             guard error == nil else {
                 completion(error)
                 return
