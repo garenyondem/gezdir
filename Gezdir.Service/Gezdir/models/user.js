@@ -7,7 +7,8 @@ var UserSchema = new mongoose.Schema({
     nameSurname: String,
     email: String,
     password: String,
-    token: String
+    token: String,
+    language: String
 }, { versionKey: false });
 
 mongoose.model('User', UserSchema, constants.collectionNames.Users);
