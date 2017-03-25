@@ -10,7 +10,8 @@ const collectionNames = {
 const errorCodes = {
     missingToken: 'missing_token',
     unableToAuthenticate: 'unable_to_authenticate',
-    unableToFindUser: 'unable_to_find_user'
+    unableToFindUser: 'unable_to_find_user',
+    unableToCreateEvent: 'unable_to_create_event'
 }
 
 module.exports = {

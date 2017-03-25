@@ -44,6 +44,9 @@
     <Compile Include="helpers\error.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="models\event.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="models\user.js" />
     <Compile Include="resources\constants.js">
       <SubType>Code</SubType>
