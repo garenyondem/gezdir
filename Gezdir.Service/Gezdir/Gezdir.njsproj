@@ -31,6 +31,9 @@
     <Compile Include="app.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="child.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="controllers\authenticate.js">
       <SubType>Code</SubType>
     </Compile>

@@ -1,8 +1,22 @@
 'use strict';
 
-var app = require('./app'),
-    port = process.env.PORT || 8810;
+var port = process.env.PORT || 8810,
+    control = require('strong-cluster-control'),
+    cluster = require('cluster');
 
-var server = app.listen(port, () => {
-    console.log('Server listening on port ' + port);
-});
+
+if (cluster.isMaster) {
+    control.start({
+        size: control.CPUS
+    }).on('resize', (size) => {
+        console.log('Cluster size: ' + size);
+    }).on('startWorker', (worker) => {
+        console.log('Worker ' + worker.process.pid + ' is online and starting');
+    }).on('error', (err) => {
+        console.log('FAILED TO START NEW WORKER!! -> ' + err);
+    });
+} else {
+    require('./child')(port);
+}
+
+
