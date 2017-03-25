@@ -8,6 +8,7 @@ var express = require('express'),
     constants = require('../resources/constants'),
     authenticate = require('./authenticate'),
     async = require('async'),
+    _ = require('lodash'),
     Dictionary = require('../localization/dictionary');
 
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -121,7 +122,8 @@ router.get('/', authenticate, (req, res) => {
                     name: dict.eventTypeName[event.eventType],
                     type: event.eventType
                 }
-                event.attending = !!~event.attendees.indexOf(user._id);
+                var eventAttendeesStr = _(event.attendees).map(x => x.toString()).value();
+                event.attending = !!~eventAttendeesStr.indexOf(user._id.toString());
                 var projection = {
                     nameSurname: 1
                 }
