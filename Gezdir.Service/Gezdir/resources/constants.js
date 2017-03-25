@@ -16,7 +16,10 @@ const errorCodes = {
     unableToFindEventsNearby: 'unable_to_find_events_nearby'
 }
 
+const earthRadiusKm = 6371;
+
 module.exports = {
     collectionNames: collectionNames,
-    errorCodes: errorCodes
+    errorCodes: errorCodes,
+    earthRadiusKm: earthRadiusKm
 }

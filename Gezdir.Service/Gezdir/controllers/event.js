@@ -62,8 +62,7 @@ router.get('/', authenticate, (req, res) => {
         ]
     }
     function toRadian(kms) {
-        var earthRadiusKm = 6371;
-        return kms / earthRadiusKm;
+        return kms / constants.earthRadiusKm;
     }
     var query = {
         location: {
