@@ -28,6 +28,9 @@ class Event {
     var eventType: EventType!
     var groupType: GroupType!
     var quota: Int!
+    var attendeeCount: Int!
+    var isAttending = false
+    var guideName: String!
     
     var annotation: EventAnnotation?
     
@@ -53,7 +56,10 @@ class Event {
             let locationJson = json["location"] as? [String: Any],
             let eventTypeJson = json["eventType"] as? [String: Any],
             let groupTypeString = json["groupType"] as? String,
-            let quota = json["quota"] as? Int
+            let quota = json["quota"] as? Int,
+            let attendees = json["attendees"] as? [Any],
+            let attending = json["attending"] as? Bool,
+            let guideName = json["guideName"] as? String
             else { return nil }
         
         self.eventId = eventId
@@ -63,7 +69,10 @@ class Event {
         self.eventType = EventType(with: eventTypeJson)
         self.groupType = GroupType(rawValue: groupTypeString)
         self.quota = quota
-    
+        self.attendeeCount = attendees.count
+        self.isAttending = attending
+        self.guideName = guideName
+        
         if let coordinatesJson = locationJson["coordinates"] as? [Any],
             let long = coordinatesJson[0] as? Double,
             let lat = coordinatesJson[1] as? Double {

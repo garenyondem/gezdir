@@ -51,14 +51,9 @@ extension MKMapView {
         self.removeAnnotations(self.annotations)
     }
 }
-/*
+
 extension Array where Element: Event {
     func event(by id: String) -> Event? {
-        self.forEach { event in
-            if event.eventId == id {
-                return event
-            }
-        }
-        return nil
+        return self.filter({ $0.eventId == id }).first        
     }
-} */
+}

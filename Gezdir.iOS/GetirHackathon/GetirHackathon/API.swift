@@ -53,7 +53,7 @@ extension API {
             case .event: return "/events"
             case .createEvent: return "/events"
             case .eventTypes: return "/eventTypes"
-            case .attendEventBy: return "/events"
+            case .attendEventBy(let id): return "/events/\(id)"
             }
         }
         
@@ -93,9 +93,6 @@ extension API {
                 let q2 = URLQueryItem(name: "longitude", value: String(around.longitude))
                 let q3 = URLQueryItem(name: "groupType", value: groupType.rawValue)
                 return [q1, q2, q3]
-            case .attendEventBy(let id):
-                let q1 = URLQueryItem(name: "id", value: id)
-                return [q1]
             case .event(let id):
                 let q1 = URLQueryItem(name: "id", value: id)
                 return [q1]

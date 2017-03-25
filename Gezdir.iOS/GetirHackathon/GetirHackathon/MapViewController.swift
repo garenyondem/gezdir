@@ -16,9 +16,9 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
-    private var eventList = [Event]()
+    fileprivate var eventList = [Event]()
     
-    var selectedEventIdToShow: String!
+    var selectedEventToShow: Event?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class MapViewController: UIViewController {
     
     fileprivate func refreshEvents() {
         if let userLocation = LocationManager.shared.lastKnownLocation {
-            let groupType = self.segmentControl.selectedSegmentIndex == 0 ? GroupType.privateGroup : GroupType.publicGroup
+            let groupType = self.segmentControl.selectedSegmentIndex == 0 ? GroupType.publicGroup : GroupType.publicGroup
             Event.events(around: userLocation, for: groupType, completion: { [weak self] (eventList, error) in
                 
                 if  error != nil,
@@ -59,7 +59,8 @@ class MapViewController: UIViewController {
                 }
                 
                 DispatchQueue.main.async {
-                    self?.populateMap(with: eventList!)
+                    self?.eventList = eventList!
+                    self?.populateMap()
                 }
                 
             })
@@ -72,15 +73,19 @@ class MapViewController: UIViewController {
                 let vc = navigationController.viewControllers[0] as? CreateEventTableViewController {
                 vc.delegateEventCreation = self
             }
-            
+        }
+        else if segue.identifier == "sgEventDetails" {
+            let vc = segue.destination as! EventDetailsViewController
+            vc.event = self.selectedEventToShow
+            self.selectedEventToShow = nil
         }
     }
 }
 
 // MARK: - Functions 
 extension MapViewController {
-    fileprivate func populateMap(with events: [Event]) {
-        events.forEach { event in
+    fileprivate func populateMap() {
+        self.eventList.forEach { event in
             if let annotation = event.annotation {
                 self.add(annotation: annotation)
             }
@@ -135,8 +140,11 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation as? EventAnnotation {
-            self.selectedEventIdToShow = annotation.eventId
-            self.performSegue(withIdentifier: "sgEventDetails", sender: nil)
+            if let event = self.eventList.event(by: annotation.eventId) {
+                self.selectedEventToShow = event
+                self.performSegue(withIdentifier: "sgEventDetails", sender: nil)
+            }
+            
         }
     }
 }

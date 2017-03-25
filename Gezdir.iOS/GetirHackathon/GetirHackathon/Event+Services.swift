@@ -63,9 +63,14 @@ extension Event {
         }
     }
     
-    func attend(completion: AttendEventResult) {
-        API.shared.request(endpoint: .attendEventBy(id: self.eventId)) { (jsonObject, error) in
-            print(jsonObject)
+    func attend(completion: @escaping AttendEventResult) {
+        API.shared.request(endpoint: .attendEventBy(id: self.eventId)) { (_, error) in
+            guard error == nil else {
+                completion(error)
+                return
+            }
+            
+            completion(nil)
         }
     }
     
