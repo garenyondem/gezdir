@@ -57,6 +57,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="models\eventType.js" />
+    <Compile Include="models\ticket.js" />
     <Compile Include="models\user.js" />
     <Compile Include="resources\constants.js">
       <SubType>Code</SubType>

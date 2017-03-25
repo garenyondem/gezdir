@@ -18,7 +18,6 @@ var EventSchema = new Schema({
     },
     eventType: String,
     quota: Number,
-    groupType: String,
     name: String
 }, { versionKey: false });
 
