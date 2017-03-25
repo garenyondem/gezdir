@@ -104,7 +104,7 @@ router.get('/', authenticate, (req, res) => {
                 token: req.headers.token
             }
             var projection = {
-                _id: 0,
+                _id: 1,
                 language: 1
             }
             User.findOne(query, projection, callback)
@@ -114,15 +114,21 @@ router.get('/', authenticate, (req, res) => {
         if (!err && _is.existy(results[1])) {
             var user = results[0],
                 events = results[1],
-                userLanguage = user.language,
-                dict = Dictionary(userLanguage);
+                dict = Dictionary(user.language);
 
             async.map(events, (event, callback) => {
                 event.eventType = {
                     name: dict.eventTypeName[event.eventType],
                     type: event.eventType
                 }
-                callback(null, event);
+                event.attending = !!~event.attendees.indexOf(user._id);
+                var projection = {
+                    nameSurname: 1
+                }
+                User.findById(event.guide, projection, (err, guide) => {
+                    event.guideName = !err ? guide.nameSurname : '';
+                    callback(null, event);
+                });
             }, (err, events) => {
                 if (!err) {
                     res.status(200).send(events);
