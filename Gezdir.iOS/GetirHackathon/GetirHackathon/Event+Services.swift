@@ -10,14 +10,34 @@ import Foundation
 import MapKit
 
 extension Event {
-    typealias EventListResult = ([Event], API.RequestError?) -> Void
+    typealias EventListResult = ([Event]?, API.RequestError?) -> Void
     typealias CreateEventResult = (Event?, API.RequestError?) -> Void
+    typealias AttendEventResult = (API.RequestError?) -> Void
     
-    static func events(around location: CLLocationCoordinate2D, for userType: Int, completion: EventListResult) {
+    static func events(around location: CLLocationCoordinate2D, for groupType: GroupType, completion: @escaping EventListResult) {
         
-        API.shared.request(endpoint: .events(around: location, userType: userType)) { (jsonObject, error) in
+        API.shared.request(endpoint: .events(around: location, groupType: groupType)) { (jsonObject, error) in
+            print(jsonObject)
+            var eventList = [Event]()
             
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
             
+            guard let rootJson = jsonObject as? [Any] else {
+                completion(nil, .parse)
+                return
+            }
+            
+            rootJson.forEach { eventData in
+                if let eventDataJson = eventData as? [String: Any],
+                    let event = Event(with: eventDataJson) {
+                    eventList.append(event)
+                }
+            }
+            
+            completion(eventList, nil)
         }
         
     }
@@ -40,6 +60,12 @@ extension Event {
             else {
                 completion(nil, .parse)
             }
+        }
+    }
+    
+    func attend(completion: AttendEventResult) {
+        API.shared.request(endpoint: .attendEventBy(id: self.eventId)) { (jsonObject, error) in
+            print(jsonObject)
         }
     }
     

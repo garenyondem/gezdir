@@ -18,6 +18,8 @@ class MapViewController: UIViewController {
     
     private var eventList = [Event]()
     
+    var selectedEventIdToShow: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loggedIn), name: Notification.Name.loggedIn , object: nil)
@@ -37,8 +39,31 @@ class MapViewController: UIViewController {
         self.refreshEvents()
     }
     
-    private func refreshEvents() {
-        //Event.events(around: <#T##CLLocationCoordinate2D#>, for: <#T##Int#>, completion: <#T##([Event], API.RequestError) -> Void#>)
+    fileprivate func refreshEvents() {
+        if let userLocation = LocationManager.shared.lastKnownLocation {
+            let groupType = self.segmentControl.selectedSegmentIndex == 0 ? GroupType.privateGroup : GroupType.publicGroup
+            Event.events(around: userLocation, for: groupType, completion: { [weak self] (eventList, error) in
+                
+                if  error != nil,
+                    case API.RequestError.serverSide(let message) = error! {
+                    DispatchQueue.main.async {
+                        self?.alert(title: NSLocalizedString("error", comment: ""), message: message)
+                    }
+                    return
+                }
+                else if error != nil {
+                    DispatchQueue.main.async {
+                        self?.alert(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("an_error_occured", comment: ""))
+                    }
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self?.populateMap(with: eventList!)
+                }
+                
+            })
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,29 +81,20 @@ class MapViewController: UIViewController {
 extension MapViewController {
     fileprivate func populateMap(with events: [Event]) {
         events.forEach { event in
-            
-            // TODO: add event annotation to map
-            
             if let annotation = event.annotation {
                 self.add(annotation: annotation)
             }
-            
-            
         }
     }
     
     private func add(annotation: EventAnnotation) {
-        print(annotation.coordinate)
-        //let circle = MKCircle(center: coordinate, radius: self.radius)
-        
-        //self.mapView.add(circle)
         self.mapView.addAnnotation(annotation)
-        
     }
     
     func updateUserLocationOnMap() {
         if let location = LocationManager.shared.lastKnownLocation {
             self.mapView.setRegion(MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: false)
+            self.refreshEvents()
         }
     }
 }
@@ -86,6 +102,42 @@ extension MapViewController {
 // MARK: - CreateEvent Delegate
 extension MapViewController: CreateEventDelegate{
     func eventCreated(event: Event) {
-        print(event)
+        self.refreshEvents()
     }
 }
+
+// MARK: - MapView Delegate
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is EventAnnotation {
+            
+            var view: MKPinAnnotationView
+            
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: "mypin") as? MKPinAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            }
+            else {
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "mypin")
+            }
+            
+            let rightButton = UIButton(type: .detailDisclosure)
+            rightButton.tag = annotation.hash
+            
+            view.animatesDrop = false
+            view.canShowCallout = true
+            view.rightCalloutAccessoryView = rightButton
+            return view
+        }
+        
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation as? EventAnnotation {
+            self.selectedEventIdToShow = annotation.eventId
+            self.performSegue(withIdentifier: "sgEventDetails", sender: nil)
+        }
+    }
+}
+

@@ -10,6 +10,8 @@
 		591FBD6D1E865B7F00E4804B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD6C1E865B7F00E4804B /* LocationManager.swift */; };
 		591FBD6F1E86A7CA00E4804B /* EventTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD6E1E86A7CA00E4804B /* EventTypeTableViewController.swift */; };
 		591FBD711E86A7EF00E4804B /* EventType+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD701E86A7EF00E4804B /* EventType+Services.swift */; };
+		591FBD731E86D73400E4804B /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD721E86D73400E4804B /* Animator.swift */; };
+		591FBD751E86D92C00E4804B /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD741E86D92C00E4804B /* EventDetailsViewController.swift */; };
 		593A41A51E85A1FE008A1CBD /* User+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41A41E85A1FE008A1CBD /* User+Services.swift */; };
 		593A41A81E85A20D008A1CBD /* Event+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41A71E85A20D008A1CBD /* Event+Services.swift */; };
 		593A41AB1E85A6EF008A1CBD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41AA1E85A6EF008A1CBD /* LoginViewController.swift */; };
@@ -33,6 +35,8 @@
 		591FBD6C1E865B7F00E4804B /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		591FBD6E1E86A7CA00E4804B /* EventTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTypeTableViewController.swift; sourceTree = "<group>"; };
 		591FBD701E86A7EF00E4804B /* EventType+Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventType+Services.swift"; sourceTree = "<group>"; };
+		591FBD721E86D73400E4804B /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		591FBD741E86D92C00E4804B /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		593A41A41E85A1FE008A1CBD /* User+Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Services.swift"; sourceTree = "<group>"; };
 		593A41A71E85A20D008A1CBD /* Event+Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+Services.swift"; sourceTree = "<group>"; };
 		593A41AA1E85A6EF008A1CBD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +69,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		591FBD761E86D94200E4804B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				593A41AF1E85B8A3008A1CBD /* EventAnnotation.swift */,
+				591FBD6C1E865B7F00E4804B /* LocationManager.swift */,
+				593A41B11E85BD46008A1CBD /* Extensions.swift */,
+				591FBD721E86D73400E4804B /* Animator.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		593A41A61E85A201008A1CBD /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +107,7 @@
 				593A41BB1E85F146008A1CBD /* SelectDateTableViewController.swift */,
 				593A41BD1E85F156008A1CBD /* SelectAddressViewController.swift */,
 				591FBD6E1E86A7CA00E4804B /* EventTypeTableViewController.swift */,
+				591FBD741E86D92C00E4804B /* EventDetailsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -130,9 +146,7 @@
 				593F391C1E85926C0027BE0C /* LaunchScreen.storyboard */,
 				593F391F1E85926C0027BE0C /* Info.plist */,
 				593F39251E85929A0027BE0C /* API.swift */,
-				593A41AF1E85B8A3008A1CBD /* EventAnnotation.swift */,
-				591FBD6C1E865B7F00E4804B /* LocationManager.swift */,
-				593A41B11E85BD46008A1CBD /* Extensions.swift */,
+				591FBD761E86D94200E4804B /* Helpers */,
 				593F39291E859F430027BE0C /* Models */,
 				593A41AC1E85A705008A1CBD /* ViewControllers */,
 			);
@@ -228,10 +242,12 @@
 				593A41B01E85B8A3008A1CBD /* EventAnnotation.swift in Sources */,
 				593A41BE1E85F156008A1CBD /* SelectAddressViewController.swift in Sources */,
 				593A41BC1E85F146008A1CBD /* SelectDateTableViewController.swift in Sources */,
+				591FBD731E86D73400E4804B /* Animator.swift in Sources */,
 				593A41B41E85E293008A1CBD /* EventType.swift in Sources */,
 				593A41BA1E85F136008A1CBD /* CreateEventTableViewController.swift in Sources */,
 				591FBD6F1E86A7CA00E4804B /* EventTypeTableViewController.swift in Sources */,
 				593F39261E85929A0027BE0C /* API.swift in Sources */,
+				591FBD751E86D92C00E4804B /* EventDetailsViewController.swift in Sources */,
 				593A41AB1E85A6EF008A1CBD /* LoginViewController.swift in Sources */,
 				593A41B21E85BD46008A1CBD /* Extensions.swift in Sources */,
 				593F39141E85926C0027BE0C /* AppDelegate.swift in Sources */,

@@ -94,6 +94,7 @@ class CreateEventTableViewController: UITableViewController {
                 }
                 
                 DispatchQueue.main.async {
+                    self?.dismiss(animated: true, completion: nil)
                     self?.delegateEventCreation?.eventCreated(event: event!)
                 }
             })

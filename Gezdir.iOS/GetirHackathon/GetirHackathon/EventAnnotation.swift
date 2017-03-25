@@ -17,6 +17,8 @@ class EventAnnotation: NSObject, MKAnnotation {
     
     var overlay: MKCircle!
     
+    var eventId: String!
+    
     init(title: String?, coordinate: CLLocationCoordinate2D, subtitle: String?) {
         self.title = title
         self.coordinate = coordinate

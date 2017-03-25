@@ -10,14 +10,11 @@ import UIKit
 import MapKit
 
 extension Notification.Name {
-    
     static let loggedIn = Notification.Name("user_loggedIn")
     static let locationUpdated = Notification.Name("user_location_updated")
-    
 }
 
 extension UIViewController {
-    
     func alert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let actionOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -27,10 +24,9 @@ extension UIViewController {
 }
 
 extension Date {
-    
     var forApiFormatedString: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyy-MM-dd hh:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         return dateFormatter.string(from: self)
     }
     
@@ -38,23 +34,31 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM hh:mm"
         return dateFormatter.string(from: self)
-    }
-    
+    } 
 }
 
 extension String {
     var dateFromString: Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSSXXXXX"
         return dateFormatter.date(from: self)
     }
 }
 
 extension MKMapView {
-    
     func removeAllEvents() {
         self.removeOverlays(self.overlays)
         self.removeAnnotations(self.annotations)
     }
-    
 }
+/*
+extension Array where Element: Event {
+    func event(by id: String) -> Event? {
+        self.forEach { event in
+            if event.eventId == id {
+                return event
+            }
+        }
+        return nil
+    }
+} */

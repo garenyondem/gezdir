@@ -29,10 +29,11 @@ class API: NSObject {
 extension API {
     enum Endpoints {
         case login(mail: String, password: String, language: String)
-        case events(around: CLLocationCoordinate2D, userType: Int)
-        case event(id: Int)
+        case events(around: CLLocationCoordinate2D, groupType: GroupType)
+        case event(id: String)
         case createEvent(event: Event)
         case eventTypes
+        case attendEventBy(id: String)
         
         var method: String {
             switch self {
@@ -41,6 +42,7 @@ extension API {
             case .event: return RequestType.get.rawValue
             case .createEvent: return RequestType.post.rawValue
             case .eventTypes: return RequestType.get.rawValue
+            case .attendEventBy: return RequestType.put.rawValue
             }
         }
         
@@ -48,9 +50,10 @@ extension API {
             switch self {
             case .login: return "/user/login"
             case .events: return "/events"
-            case .event(let id): return "/events/\(id)"
+            case .event: return "/events"
             case .createEvent: return "/events"
             case .eventTypes: return "/eventTypes"
+            case .attendEventBy: return "/events"
             }
         }
         
@@ -62,10 +65,8 @@ extension API {
                 parameters["email"] = mail
                 parameters["password"] = password
                 parameters["language"] = language
-            case .events(let location, let userType):
-                parameters[""] = ""
-                parameters[""] = ""
-                parameters[""] = ""
+            case .events:
+                break
             case .event:
                 break
             case .createEvent(let event):
@@ -74,13 +75,34 @@ extension API {
                 parameters["expirationDate"] = event.expirationDate.forApiFormatedString
                 parameters["eventType"] = event.eventType.key
                 parameters["groupType"] = event.groupType.rawValue
-                parameters["coordinates"] = [event.location.latitude, event.location.longitude]
+                parameters["coordinates"] = [event.location.longitude, event.location.latitude]
                 parameters["quota"] = event.quota
             case .eventTypes:
+                break
+            case .attendEventBy:
                 break
             }
             
             return parameters
+        }
+        
+        var queryItems: [URLQueryItem]? {
+            switch self {
+            case .events(let around, let groupType):
+                let q1 = URLQueryItem(name: "latitude", value: String(around.latitude))
+                let q2 = URLQueryItem(name: "longitude", value: String(around.longitude))
+                let q3 = URLQueryItem(name: "groupType", value: groupType.rawValue)
+                return [q1, q2, q3]
+            case .attendEventBy(let id):
+                let q1 = URLQueryItem(name: "id", value: id)
+                return [q1]
+            case .event(let id):
+                let q1 = URLQueryItem(name: "id", value: id)
+                return [q1]
+            default: return nil
+            }
+            
+            
         }
         
         var needsAuthorization: Bool {
@@ -102,12 +124,14 @@ extension API {
     enum RequestType: String {
         case get = "GET"
         case post = "POST"
+        case put = "PUT"
     }
 }
 
 // MARK: - Service Funtions
 extension API {
     func request(endpoint: Endpoints, completion: @escaping NetworkResult) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         guard let url = self.url(for: endpoint) else {
             completion(nil, .invalidUrl)
             return
@@ -130,12 +154,16 @@ extension API {
         }
         
         self.defaultSession.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            
             guard error == nil else { // Client Error
                 completion(nil, .clientSide)
                 return
             }
             
-            guard (response as! HTTPURLResponse).statusCode == 200 else {
+            guard (response as! HTTPURLResponse).statusCode == 200 else { // Server Side Check
                 if  let jsonObject = try? JSONSerialization.jsonObject(with: data!, options: []),
                     let json = jsonObject as? [String: Any],
                     let message = json["errorMessage"] as? String {
@@ -165,6 +193,7 @@ extension API {
     fileprivate func url(for endpoint: Endpoints) -> URL? {
         var urlComponent = URLComponents(string: self.baseUrl)
         urlComponent?.path = endpoint.path
+        urlComponent?.queryItems = endpoint.queryItems
         return urlComponent?.url
     }
 }

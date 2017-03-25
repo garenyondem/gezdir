@@ -82,6 +82,76 @@
             </objects>
             <point key="canvasLocation" x="1887" y="889"/>
         </scene>
+        <!--Event Details View Controller-->
+        <scene sceneID="jgB-07-Gff">
+            <objects>
+                <viewController id="DT8-8G-HtB" customClass="EventDetailsViewController" customModule="GetirHackathon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BTh-YU-Fcm"/>
+                        <viewControllerLayoutGuide type="bottom" id="jd5-BL-pSU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gp5-sB-p7C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="5dG-jW-5Ti">
+                                <rect key="frame" x="16" y="28" width="343" height="307.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsI-Xy-WcV">
+                                        <rect key="frame" x="133" y="0.0" width="77.5" height="38.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9P-a3-DtI">
+                                        <rect key="frame" x="51.5" y="50.5" width="240.5" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="70C-WL-fyn"/>
+                                            <constraint firstAttribute="width" constant="240" id="yNW-1T-9Hc"/>
+                                        </constraints>
+                                    </mapView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D52-Zs-vZZ">
+                                        <rect key="frame" x="140" y="182.5" width="63.5" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZd-O5-dEd">
+                                        <rect key="frame" x="140" y="226" width="63.5" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTz-xy-vO1">
+                                        <rect key="frame" x="140" y="269.5" width="63" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <state key="normal" title="Attend"/>
+                                        <connections>
+                                            <action selector="btnAttendPressed:" destination="DT8-8G-HtB" eventType="touchUpInside" id="jXL-bD-Lja"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5dG-jW-5Ti" secondAttribute="trailing" constant="16" id="AmJ-Wv-ovs"/>
+                            <constraint firstItem="5dG-jW-5Ti" firstAttribute="top" secondItem="BTh-YU-Fcm" secondAttribute="bottom" constant="8" id="RcE-Fl-v3N"/>
+                            <constraint firstItem="5dG-jW-5Ti" firstAttribute="leading" secondItem="Gp5-sB-p7C" secondAttribute="leading" constant="16" id="ryW-fM-6yn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnAttend" destination="OTz-xy-vO1" id="H4c-64-1bB"/>
+                        <outlet property="lblAtendeeCount" destination="UZd-O5-dEd" id="TP2-fQ-bSi"/>
+                        <outlet property="lblEventName" destination="ZsI-Xy-WcV" id="spJ-pa-If6"/>
+                        <outlet property="lblGuideName" destination="D52-Zs-vZZ" id="1TS-tW-5KA"/>
+                        <outlet property="mapView" destination="a9P-a3-DtI" id="sE4-iv-UGb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j2u-30-LJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1885.5999999999999" y="-550.07496251874068"/>
+        </scene>
         <!--Gezdir-->
         <scene sceneID="5UM-jJ-oq1">
             <objects>
@@ -103,6 +173,9 @@
                             </segmentedControl>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vl4-Yq-Hn6">
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <connections>
+                                    <outlet property="delegate" destination="M6C-dd-IlK" id="xgB-kt-Gub"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-JL-THh">
                                 <rect key="frame" x="157" y="587" width="60" height="60"/>
@@ -111,7 +184,7 @@
                                     <constraint firstAttribute="width" constant="60" id="UaE-AH-p9Z"/>
                                     <constraint firstAttribute="height" constant="60" id="cBX-7F-QFd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="+"/>
                                 <connections>
@@ -137,6 +210,7 @@
                         <outlet property="mapView" destination="Vl4-Yq-Hn6" id="n67-zK-A7t"/>
                         <outlet property="segmentControl" destination="q1s-Sg-rb5" id="4Ok-2y-6t6"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="sgLogin" id="J49-gp-tq6"/>
+                        <segue destination="DT8-8G-HtB" kind="presentation" identifier="sgEventDetails" id="Vcr-jG-pAs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8I-d0-zVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,18 +346,18 @@
                                         <rect key="frame" x="0.0" y="304" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AQ6-Zx-tTt" id="E2r-ff-o3w">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="53.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Select event type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QJ5-Na-VMf">
-                                                    <rect key="frame" x="15" y="9" width="134" height="21"/>
+                                                    <rect key="frame" x="15" y="10" width="133.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Not selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RJF-X0-kig">
-                                                    <rect key="frame" x="15" y="30" width="73" height="15"/>
+                                                    <rect key="frame" x="15" y="30.5" width="72.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -545,7 +619,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yjz-Gc-tTe" id="98r-6M-cV4">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

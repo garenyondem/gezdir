@@ -15,10 +15,16 @@ enum GroupType: String {
 }
 
 class Event {
+    var eventId: String!
     var name: String!
     var creationDate: Date!
     var expirationDate: Date!
-    var location: CLLocationCoordinate2D!
+    var location: CLLocationCoordinate2D! {
+        didSet {
+            self.annotation = EventAnnotation(title: self.name, coordinate: self.location, subtitle: nil)
+            self.annotation!.eventId = self.eventId
+        }
+    }
     var eventType: EventType!
     var groupType: GroupType!
     var quota: Int!
@@ -40,26 +46,30 @@ class Event {
     init?(with json: [String: Any]) {
         print(json)
         guard
+            let eventId = json["_id"] as? String,
             let name = json["name"] as? String,
             let creationDateString = json["creationDate"] as? String,
             let expirationDate = json["expirationDate"] as? String,
             let locationJson = json["location"] as? [String: Any],
-            let eventType = json["eventType"] as? [String: Any],
+            let eventTypeJson = json["eventType"] as? [String: Any],
             let groupTypeString = json["groupType"] as? String,
             let quota = json["quota"] as? Int
             else { return nil }
         
+        self.eventId = eventId
         self.name = name
         self.creationDate = creationDateString.dateFromString
         self.expirationDate = expirationDate.dateFromString
-        self.eventType = EventType(with: eventType)
+        self.eventType = EventType(with: eventTypeJson)
         self.groupType = GroupType(rawValue: groupTypeString)
         self.quota = quota
-        
+    
         if let coordinatesJson = locationJson["coordinates"] as? [Any],
-            let lat = coordinatesJson[0] as? Double,
-            let long = coordinatesJson[1] as? Double {
+            let long = coordinatesJson[0] as? Double,
+            let lat = coordinatesJson[1] as? Double {
             self.location = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            self.annotation = EventAnnotation(title: self.name, coordinate: self.location, subtitle: nil)
+            self.annotation?.eventId = self.eventId
         }
         
         
