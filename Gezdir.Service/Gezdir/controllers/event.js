@@ -52,4 +52,31 @@ router.post('/', authenticate, (req, res) => {
     });
 });
 
+// returns nearby events
+router.get('/', authenticate, (req, res) => {
+
+    var lat = req.query.latitude,
+        lon = req.query.longtitude;
+
+    var location = {
+        type: 'Point',
+        coordinates: [
+            lat,
+            lon
+        ]
+    }
+    //TODO: 2d search in 1km distance
+});
+
+// returns event by given id
+router.get('/:id', authenticate, (req, res) => {
+    Event.findById(req.params.id, (err, event) => {
+        if (!err && _is.existy(event)) {
+            res.status(200).send(event);
+        } else {
+            res.status(500).send(error(constants.errorCodes.unableToFindEvent));
+        }
+    });
+});
+
 module.exports = router;
