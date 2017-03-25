@@ -4,7 +4,8 @@ const collectionNames = {
     Users: 'Users',
     UserLocations: 'UserLocations',
     Events: 'Events',
-    EventTypes: 'EventTypes'
+    EventTypes: 'EventTypes',
+    Tickets: 'Tickets'
 }
 
 const errorCodes = {
