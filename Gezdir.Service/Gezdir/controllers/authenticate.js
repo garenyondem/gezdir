@@ -13,7 +13,7 @@ router.use(bodyParser.json());
 var User = require('../models/user');
 
 function init(req, res, next) {
-    var token = req.headers.Token;
+    var token = req.headers.token;
     if (_is.not.existy(token)) {
         return res.status(500).send(error(constants.errorCodes.missingToken));
     }

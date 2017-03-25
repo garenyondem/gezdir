@@ -38,7 +38,7 @@ router.post('/', authenticate, (req, res) => {
     }
 
     async.waterfall([
-        (callback) => User.findOne({ token: req.headers.Token }, { _id: 1 }, callback),
+        (callback) => User.findOne({ token: req.headers.token }, { _id: 1 }, callback),
         (user, callback) => createEvent(user._id, callback)
     ], (err, event) => {
         if (!err) {
