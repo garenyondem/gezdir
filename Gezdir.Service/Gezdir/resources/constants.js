@@ -12,7 +12,8 @@ const errorCodes = {
     unableToAuthenticate: 'unable_to_authenticate',
     unableToFindUser: 'unable_to_find_user',
     unableToCreateEvent: 'unable_to_create_event',
-    unableToFindEvent: 'unable_to_find_event'
+    unableToFindEvent: 'unable_to_find_event',
+    unableToFindEventsNearby: 'unable_to_find_events_nearby'
 }
 
 module.exports = {

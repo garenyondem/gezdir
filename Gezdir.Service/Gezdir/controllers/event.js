@@ -54,18 +54,34 @@ router.post('/', authenticate, (req, res) => {
 
 // returns nearby events
 router.get('/', authenticate, (req, res) => {
-
-    var lat = req.query.latitude,
-        lon = req.query.longtitude;
-
-    var location = {
+    var userLocation = {
         type: 'Point',
         coordinates: [
-            lat,
-            lon
+            req.query.latitude,
+            req.query.longtitude
         ]
     }
-    //TODO: 2d search in 1km distance
+    function toRadian(kms) {
+        var earthRadiusKm = 6371;
+        return kms / earthRadiusKm;
+    }
+    var query = {
+        location: {
+            $geoWithin: {
+                $centerSphere: [
+                    userLocation.coordinates,
+                    toRadian(1)
+                ]
+            }
+        }
+    }
+    Event.find(query, (err, events) => {
+        if (!err && _is.existy(events) && _is.not.empty(events)) {
+            res.status(200).send(events);
+        } else {
+            res.status(500).send(error(constants.errorCodes.unableToFindEvent));
+        }
+    });
 });
 
 // returns event by given id
