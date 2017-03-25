@@ -17,15 +17,13 @@ function init(req, res, next) {
     if (_is.not.existy(token)) {
         return res.status(500).send(error(constants.errorCodes.missingToken));
     }
-    User.count({ token: token },
-        (err, count) => {
-            if (count && count > 0) {
-                next();
-            } else {
-                res.status(500).send(error(constants.errorCodes.unableToAuthenticate));
-            }
+    User.count({ token: token }).lean().exec((err, count) => {
+        if (count && count > 0) {
+            next();
+        } else {
+            res.status(500).send(error(constants.errorCodes.unableToAuthenticate));
         }
-    );
+    });
 }
 
 module.exports = init;
