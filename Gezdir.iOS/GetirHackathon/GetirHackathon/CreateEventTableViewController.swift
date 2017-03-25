@@ -9,24 +9,29 @@
 import UIKit
 import MapKit
 
-class CreateEventTableViewController: UITableViewController {
+protocol CreateEventDelegate {
+    func eventCreated(event: Event)
+}
 
+class CreateEventTableViewController: UITableViewController {
     @IBOutlet weak var segmentGroupType: UISegmentedControl!
     @IBOutlet weak var lblSelectedDate: UILabel!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var lblQuota: UILabel!
     @IBOutlet weak var sliderQuota: UISlider!
     @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var lblEventType: UILabel!
     
-    fileprivate var dateFrom = Date()
-    fileprivate var dateTo = Date()
-    fileprivate var coordinate: CLLocationCoordinate2D!
-    fileprivate var quota = 0
-    fileprivate var groupType = GroupType.privateGroup
+    fileprivate var event: Event!
+    
+    var delegateEventCreation: CreateEventDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.event = Event()
+        self.event.quota = 0
+        self.event.groupType = GroupType.privateGroup
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,7 +45,12 @@ class CreateEventTableViewController: UITableViewController {
     }
     
     fileprivate func updateSelectedDate() {
-        self.lblSelectedDate.text = "\(self.dateFrom.forDateSelectionString) - \(self.dateTo.forDateSelectionString)"
+        guard
+            let creationDate = self.event.creationDate,
+            let expirationDate = self.event.expirationDate
+        else { return }
+        
+        self.lblSelectedDate.text = "\(creationDate.forDateSelectionString) - \(expirationDate.forDateSelectionString)"
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,28 +62,53 @@ class CreateEventTableViewController: UITableViewController {
             let vc = segue.destination as! SelectAddressViewController
             vc.delegate = self
         }
+        else if segue.identifier == "sgEventType" {
+            let vc = segue.destination as! EventTypeTableViewController
+            vc.delegate = self
+        }
     }
     
     // MARK: - IBActions
     @IBAction func btnSavePressed(_ sender: UIBarButtonItem) {
-        if self.txtName.text!.isEmpty {
+        if self.txtName.text!.isEmpty && self.event.groupType == GroupType.publicGroup {
             self.alert(title: NSLocalizedString("warning", comment: ""), message: NSLocalizedString("empty_field", comment: ""))
             return
         }
         
+        self.event.name = self.txtName.text
         
-        let event = Event(name: self.txtName.text!
-            , creationDate: self.dateFrom, expirationDate: self.dateTo, location: self.coordinate, eventType: EventType(key: "Food", value: "Food"), groupType: self.groupType, quota: self.quota)
-        event.create()
+        if self.event.isValidForRequest {
+            self.event.create(completion: { [weak self] (event, error) in
+                if  error != nil,
+                    case API.RequestError.serverSide(let message) = error! {
+                    DispatchQueue.main.async {
+                        self?.alert(title: NSLocalizedString("error", comment: ""), message: message)
+                    }
+                    return
+                }
+                else if error != nil {
+                    DispatchQueue.main.async {
+                        self?.alert(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("an_error_occured", comment: ""))
+                    }
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self?.delegateEventCreation?.eventCreated(event: event!)
+                }
+            })
+                
+        
+        }
     }
     
     @IBAction func sliderQuotaValueChanged(_ sender: UISlider) {
-        self.quota = Int(sender.value)
-        self.lblQuota.text = NSLocalizedString("quota", comment: "") + ": \((self.quota))"
+        self.event.quota = Int(sender.value)
+        self.lblQuota.text = NSLocalizedString("quota", comment: "") + ": \((self.event.quota!))"
     }
     
     @IBAction func segmentGroupTypeValueChanged(_ sender: UISegmentedControl) {
-        self.groupType = sender.selectedSegmentIndex == 0 ? .privateGroup : .publicGroup
+        self.event.groupType = sender.selectedSegmentIndex == 0 ? .privateGroup : .publicGroup
         self.tableView.reloadData()
     }
 }
@@ -84,7 +119,7 @@ extension CreateEventTableViewController {
         let isPrivate = self.segmentGroupType.selectedSegmentIndex == 0
         if isPrivate {
             switch indexPath.section {
-            case 0, 3:
+            case 0, 4:
                 return 0.1
             default:
                 return 52
@@ -97,7 +132,7 @@ extension CreateEventTableViewController {
         let isPrivate = self.segmentGroupType.selectedSegmentIndex == 0
         if isPrivate {
             switch section {
-            case 0, 3:
+            case 0, 4:
                 return 0.1
             default:
                 return 22
@@ -111,11 +146,11 @@ extension CreateEventTableViewController {
 extension CreateEventTableViewController: DateSelectorDelegate {
     
     func dateFromUpdated(date: Date) {
-        self.dateFrom = date
+        self.event.creationDate = date
     }
     
     func dateUntilUpdated(date: Date) {
-        self.dateTo = date
+        self.event.expirationDate = date
     }
     
 }
@@ -124,7 +159,7 @@ extension CreateEventTableViewController: DateSelectorDelegate {
 extension CreateEventTableViewController: AddressSelectionDelegate {
     
     func addressUpdated(coordinate: CLLocationCoordinate2D, address: String?) {
-        self.coordinate = coordinate
+        self.event.location = coordinate
         self.lblAddress.text = NSLocalizedString("address_selected", comment: "")
     }
     
@@ -135,5 +170,13 @@ extension CreateEventTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: - EventTypeSelection Delegate
+extension CreateEventTableViewController: EventTypeSelectionDelegate {
+    func eventTypeSelected(eventType: EventType) {
+        self.event.eventType = eventType
+        self.lblEventType.text = eventType.value
     }
 }

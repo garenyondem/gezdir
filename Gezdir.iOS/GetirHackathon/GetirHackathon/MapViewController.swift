@@ -21,12 +21,15 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loggedIn), name: Notification.Name.loggedIn , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUserLocationOnMap), name: Notification.Name.locationUpdated , object: nil)
         
         guard User.current != nil else {
             self.performSegue(withIdentifier: "sgLogin", sender: nil)
             return
         }
-    
+        
+        self.updateUserLocationOnMap()
+        
         self.refreshEvents()
     }
     
@@ -38,6 +41,15 @@ class MapViewController: UIViewController {
         //Event.events(around: <#T##CLLocationCoordinate2D#>, for: <#T##Int#>, completion: <#T##([Event], API.RequestError) -> Void#>)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sgCreate" {
+            if let navigationController = segue.destination as? UINavigationController,
+                let vc = navigationController.viewControllers[0] as? CreateEventTableViewController {
+                vc.delegateEventCreation = self
+            }
+            
+        }
+    }
 }
 
 // MARK: - Functions 
@@ -63,5 +75,17 @@ extension MapViewController {
         self.mapView.addAnnotation(annotation)
         
     }
+    
+    func updateUserLocationOnMap() {
+        if let location = LocationManager.shared.lastKnownLocation {
+            self.mapView.setRegion(MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: false)
+        }
+    }
 }
 
+// MARK: - CreateEvent Delegate
+extension MapViewController: CreateEventDelegate{
+    func eventCreated(event: Event) {
+        print(event)
+    }
+}

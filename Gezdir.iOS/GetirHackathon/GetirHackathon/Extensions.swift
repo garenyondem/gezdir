@@ -12,6 +12,7 @@ import MapKit
 extension Notification.Name {
     
     static let loggedIn = Notification.Name("user_loggedIn")
+    static let locationUpdated = Notification.Name("user_location_updated")
     
 }
 
@@ -37,6 +38,15 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM hh:mm"
         return dateFormatter.string(from: self)
+    }
+    
+}
+
+extension String {
+    var dateFromString: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        return dateFormatter.date(from: self)
     }
 }
 

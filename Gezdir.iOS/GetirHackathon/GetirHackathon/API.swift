@@ -32,6 +32,7 @@ extension API {
         case events(around: CLLocationCoordinate2D, userType: Int)
         case event(id: Int)
         case createEvent(event: Event)
+        case eventTypes
         
         var method: String {
             switch self {
@@ -39,6 +40,7 @@ extension API {
             case .events: return RequestType.get.rawValue
             case .event: return RequestType.get.rawValue
             case .createEvent: return RequestType.post.rawValue
+            case .eventTypes: return RequestType.get.rawValue
             }
         }
         
@@ -48,6 +50,7 @@ extension API {
             case .events: return "/events"
             case .event(let id): return "/events/\(id)"
             case .createEvent: return "/events"
+            case .eventTypes: return "/eventTypes"
             }
         }
         
@@ -64,7 +67,7 @@ extension API {
                 parameters[""] = ""
                 parameters[""] = ""
             case .event:
-                parameters[""] = ""
+                break
             case .createEvent(let event):
                 parameters["name"] = event.name
                 parameters["creationDate"] = event.creationDate.forApiFormatedString
@@ -73,6 +76,8 @@ extension API {
                 parameters["groupType"] = event.groupType.rawValue
                 parameters["coordinates"] = [event.location.latitude, event.location.longitude]
                 parameters["quota"] = event.quota
+            case .eventTypes:
+                break
             }
             
             return parameters
@@ -119,7 +124,11 @@ extension API {
         }
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: endpoint.parameters, options: .init(rawValue: 0))
+        
+        if !endpoint.parameters.isEmpty {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: endpoint.parameters, options: .init(rawValue: 0))
+        }
+        
         self.defaultSession.dataTask(with: request) { data, response, error in
             guard error == nil else { // Client Error
                 completion(nil, .clientSide)
