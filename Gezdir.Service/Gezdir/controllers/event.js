@@ -96,9 +96,38 @@ router.get('/', authenticate, (req, res) => {
         }
     }
 
-    Event.find(query).lean().exec((err, events) => {
-        if (!err && _is.existy(events) && _is.not.empty(events)) {
-            res.status(200).send(events);
+    async.parallel([
+        (callback) => {
+            var query = {
+                token: req.headers.token
+            }
+            var projection = {
+                _id: 0,
+                language: 1
+            }
+            User.findOne(query, projection, callback)
+        },
+        (callback) => Event.find(query).lean().exec(callback)
+    ], (err, results) => {
+        if (!err && _is.existy(results[1]) && _is.not.empty(results[1])) {
+            var user = results[0],
+                events = results[1],
+                userLanguage = user.language,
+                dict = Dictionary(userLanguage);
+
+            async.map(events, (event, callback) => {
+                event.eventType = {
+                    name: dict.eventTypeName[event.eventType],
+                    type: event.eventType
+                }
+                callback(null, event);
+            }, (err, events) => {
+                if (!err) {
+                    res.status(200).send(events);
+                } else {
+                    res.status(500).send(error(constants.errorCodes.unableToFindEvent));
+                }
+            });
         } else {
             res.status(500).send(error(constants.errorCodes.unableToFindEvent));
         }
