@@ -161,7 +161,7 @@ router.put('/:id', authenticate, (req, res) => {
         //TODO: add quota control
         var update = {
             $addToSet: {
-                attendees: [userId]
+                attendees: userId
             }
         }
         var options = { new: true }
