@@ -19,9 +19,6 @@ var Event = require('../models/event'),
 
 // creates new event
 router.post('/', authenticate, (req, res) => {
-    var projection = {
-        _id: 0
-    }
     function createEvent(userId, callback) {
         Event.create({
             guide: userId,
