@@ -7,6 +7,6 @@ var express = require('express'),
     EventController = require('./controllers/event');
 
 app.use('/user', UserController);
-app.use('/event', EventController);
+app.use('/events', EventController);
 
 module.exports = app;

@@ -11,7 +11,7 @@ var EventSchema = new Schema({
     creationDate: Date,
     expirationDate: Date,
     location: {
-        type: String,
+        type: { type: String },
         coordinates: [Number]
     },
     eventType: String,

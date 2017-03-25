@@ -20,18 +20,15 @@ router.post('/', authenticate, (req, res) => {
     var projection = {
         _id: 0
     }
-
     function createEvent(userId, callback) {
         Event.create({
             guide: userId,
-            creationDate: req.body.creationDate,
-            expirationDate: req.body.expirationDate,
+            attendees: [],
+            creationDate: new Date(req.body.creationDate),
+            expirationDate: new Date(req.body.expirationDate),
             location: {
                 type: 'Point',
-                coordinates: [
-                    req.body.latitude,
-                    req.body.longtitude
-                ]
+                coordinates: req.body.coordinates
             },
             eventType: req.body.eventType,
             quota: +req.body.quota,
