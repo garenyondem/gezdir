@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
     }
 
     async.parallel([
-        (callback) => User.findOne({ token: req.headers.token }, { language: 1 }, callback),
+        (callback) => User.findOne({ token: req.headers.Token }, { language: 1 }, callback),
         (callback) => getEventTypes(callback)
     ], (err, results) => {
         if (!err && _is.existy(results) && _is.not.empty(results[1])) {
