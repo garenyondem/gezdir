@@ -5,6 +5,8 @@ var mongoose = require('mongoose'),
     ObjectId = Schema.Types.ObjectId,
     constants = require('../resources/constants');
 
+mongoose.Promise = require('bluebird');
+
 var EventSchema = new Schema({
     guide: ObjectId,
     attendees: [ObjectId],
