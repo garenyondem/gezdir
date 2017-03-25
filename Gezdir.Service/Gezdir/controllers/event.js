@@ -94,4 +94,31 @@ router.get('/:id', authenticate, (req, res) => {
     });
 });
 
+// add user to event
+router.put('/:id', authenticate, (req, res) => {
+    var eventId = req.params.id;
+
+    function addUserToEvent(userId, callback) {
+        //TODO: add quota control
+        var update = {
+            $addToSet: {
+                attendees: [userId]
+            }
+        }
+        var options = { new: true }
+        Event.findByIdAndUpdate(eventId, update, options, callback);
+    }
+
+    async.waterfall([
+        (callback) => User.findOne({ token: req.headers.token }, { _id: 1 }, callback),
+        (user, callback) => addUserToEvent(user._id, callback)
+    ], function (err, event) {
+        if (!err && _is.existy(event)) {
+            res.status(200).send(event);
+        } else {
+            res.status(500).send(error(constants.errorCodes.unableToAddAttendee));
+        }
+    });
+});
+
 module.exports = router;
