@@ -40,8 +40,9 @@ class SelectAddressViewController: UIViewController {
         self.searchController.dimsBackgroundDuringPresentation = true
         self.searchController.searchBar.placeholder = NSLocalizedString("search_address_or_location", comment: "")
         
-        // TODO:
-        //self.mapView.setRegion(MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: false)
+        if let location = LocationManager.shared.lastKnownLocation {
+            self.mapView.setRegion(MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: false)
+        }
     }
 
     @IBAction func btnSearchPressed(_ sender: UIBarButtonItem) {

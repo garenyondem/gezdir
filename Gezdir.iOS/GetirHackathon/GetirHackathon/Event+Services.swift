@@ -10,8 +10,8 @@ import Foundation
 import MapKit
 
 extension Event {
-    private typealias EventListResult = ([Event], API.RequestError) -> Void
-    //private typealias
+    typealias EventListResult = ([Event], API.RequestError?) -> Void
+    typealias CreateEventResult = (Event?, API.RequestError?) -> Void
     
     static func events(around location: CLLocationCoordinate2D, for userType: Int, completion: EventListResult) {
         
@@ -22,9 +22,24 @@ extension Event {
         
     }
     
-    func create() {
+    func create(completion: @escaping CreateEventResult) {
         API.shared.request(endpoint: .createEvent(event: self)) { (jsonObject, error) in
-            print(jsonObject)
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let rootJson = jsonObject as? [String: Any] else {
+                completion(nil, .parse)
+                return
+            }
+            
+            if let event = Event(with: rootJson) {
+                completion(event, nil)
+            }
+            else {
+                completion(nil, .parse)
+            }
         }
     }
     

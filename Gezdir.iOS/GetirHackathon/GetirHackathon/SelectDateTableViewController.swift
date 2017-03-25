@@ -22,7 +22,9 @@ class SelectDateTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.delegate?.dateFromUpdated(date: self.datePickerFrom.date)
+        self.delegate?.dateUntilUpdated(date: self.datePickerTo.date)
     }
     
     @IBAction func pickerValueChanged(_ sender: UIDatePicker) {

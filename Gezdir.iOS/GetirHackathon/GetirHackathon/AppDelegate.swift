@@ -14,13 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var locationManager: CLLocationManager!
-    
-    
+  
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        self.locationManager = CLLocationManager()
-        self.locationManager.requestWhenInUseAuthorization()
+        LocationManager.shared.updateLocation()
         
         if  let nameSurname = UserDefaults.standard.value(forKey: kNameSurname) as? String,
             let mail = UserDefaults.standard.value(forKey: kMail) as? String,
