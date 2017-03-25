@@ -2,18 +2,20 @@
 
 var port = process.env.PORT || 8810,
     control = require('strong-cluster-control'),
-    cluster = require('cluster');
+    cluster = require('cluster'),
+    log = require('./utilities/log'),
+    consoleLog = new log.console();
 
 
 if (cluster.isMaster) {
     control.start({
         size: control.CPUS
     }).on('resize', (size) => {
-        console.log('Cluster size: ' + size);
+        consoleLog.info('Cluster size: ' + size);
     }).on('startWorker', (worker) => {
-        console.log('Worker ' + worker.process.pid + ' is online and starting');
+        consoleLog.info('Worker ' + worker.process.pid + ' is online and starting');
     }).on('error', (err) => {
-        console.log('FAILED TO START NEW WORKER!! -> ' + err);
+        consoleLog.error('FAILED TO START NEW WORKER!! -> ' + err);
     });
 } else {
     require('./child')(port);
