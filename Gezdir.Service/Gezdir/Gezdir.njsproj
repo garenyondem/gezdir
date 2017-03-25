@@ -44,6 +44,11 @@
     <Compile Include="helpers\error.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="localization\dictionary.en.js" />
+    <Compile Include="localization\dictionary.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="localization\dictionary.tr.js" />
     <Compile Include="models\event.js">
       <SubType>Code</SubType>
     </Compile>
@@ -60,6 +65,7 @@
     <Folder Include="db\" />
     <Folder Include="models\" />
     <Folder Include="helpers\" />
+    <Folder Include="localization\" />
     <Folder Include="resources\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
