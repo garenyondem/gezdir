@@ -75,13 +75,10 @@ router.post('/', authenticate, (req, res) => {
 
 // returns nearby events
 router.get('/', authenticate, (req, res) => {
-    var userLocation = {
-        type: 'Point',
-        coordinates: [
-            req.query.latitude,
-            req.query.longtitude
-        ]
-    }
+    var userLocation = [
+        req.query.longitude,
+        req.query.latitude
+    ];
     function toRadian(kms) {
         return kms / constants.earthRadiusKm;
     }
@@ -92,13 +89,14 @@ router.get('/', authenticate, (req, res) => {
         location: {
             $geoWithin: {
                 $centerSphere: [
-                    userLocation.coordinates,
+                    userLocation,
                     toRadian(1)
                 ]
             }
         }
     }
-    Event.find(query, (err, events) => {
+
+    Event.find(query).lean().exec((err, events) => {
         if (!err && _is.existy(events) && _is.not.empty(events)) {
             res.status(200).send(events);
         } else {
