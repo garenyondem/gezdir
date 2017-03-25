@@ -7,7 +7,8 @@ var express = require('express'),
     error = require('../helpers/error'),
     constants = require('../resources/constants'),
     authenticate = require('./authenticate'),
-    async = require('async');
+    async = require('async'),
+    Dictionary = require('../localization/dictionary');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -38,10 +39,33 @@ router.post('/', authenticate, (req, res) => {
     }
 
     async.waterfall([
-        (callback) => User.findOne({ token: req.headers.token }, { _id: 1 }, callback),
-        (user, callback) => createEvent(user._id, callback)
-    ], (err, event) => {
+        (callback) => {
+            var query = {
+                token: req.headers.token
+            }
+            var projection = {
+                _id: 1,
+                language: 1
+            }
+            User.findOne(query, projection, callback)
+        },
+        (user, callback) => {
+            createEvent(user._id, (err, event) => {
+                callback(err, {
+                    event: event,
+                    userLanguage: user.language
+                });
+            })
+        }
+    ], (err, result) => {
         if (!err) {
+            var event = result.event.toObject(),
+                userLanguage = result.userLanguage;
+
+            event.eventType = {
+                name: Dictionary(userLanguage).eventTypeName[event.eventType],
+                type: event.eventType
+            }
             res.status(200).send(event);
         } else {
             res.status(500).send(error(constants.errorCodes.unableToCreateEvent));
