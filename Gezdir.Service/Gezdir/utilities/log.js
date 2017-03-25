@@ -1,3 +1,5 @@
+'use strict';
+
 var chalk = require('chalk'),
     error = chalk.bold.red,
     success = chalk.bold.green,
