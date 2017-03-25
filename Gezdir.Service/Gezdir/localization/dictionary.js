@@ -1,7 +1,5 @@
 ﻿'use strict';
 
-var _is = require('is_js');
-
 function init(locale) {
     var dictionary = {}
     try {
