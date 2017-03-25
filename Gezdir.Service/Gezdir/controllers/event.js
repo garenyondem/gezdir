@@ -109,7 +109,7 @@ router.get('/', authenticate, (req, res) => {
         },
         (callback) => Event.find(query).lean().exec(callback)
     ], (err, results) => {
-        if (!err && _is.existy(results[1]) && _is.not.empty(results[1])) {
+        if (!err && _is.existy(results[1])) {
             var user = results[0],
                 events = results[1],
                 userLanguage = user.language,
