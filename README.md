@@ -45,7 +45,8 @@ or
 $ npm i
 $ npm start
 ```
-App's default port is 8810
+App's default port is 8810.
+You can demo this service live on [Heroku](https://dashboard.heroku.com). Just keep in mind that free tier of Heroku containers go to sleep after a while of inactivity. First API call will wake it up.
 
 ##### IOS
 Localization: App is capable of showing both server and client side error messages in two languages (Turkish, English)
