@@ -42,3 +42,34 @@ or
 $ npm i
 $ npm start
 ```
+##### IOS
+<div style="  margin: 5px;   border: 1px solid #ccc;  float: left;  width: 170px;">
+  <a target="_blank" href="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios.png">
+    <img style="  width: 100%;   height: auto;" src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios.png" width="280">
+  </a>
+</div>
+<div style="  margin: 5px;   border: 1px solid #ccc;  float: left;  width: 170px;">
+  <a target="_blank" href="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios1.png">
+    <img style="  width: 100%;   height: auto;" src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios1.png" width="280">
+  </a>
+</div>
+<div style="  margin: 5px;   border: 1px solid #ccc;  float: left;  width: 170px;">
+  <a target="_blank" href="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios2.png">
+    <img style="  width: 100%;   height: auto;" src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios2.png" width="280">
+  </a>
+</div>
+<div style="  margin: 5px;   border: 1px solid #ccc;  float: left;  width: 170px;">
+  <a target="_blank" href="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios3.png">
+    <img style="  width: 100%;   height: auto;" src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios3.png" width="280">
+  </a>
+</div>
+<div style="  margin: 5px;   border: 1px solid #ccc;  float: left;  width: 170px;">
+  <a target="_blank" href="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios4.png">
+    <img style="  width: 100%;   height: auto;" src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios4.png" width="280">
+  </a>
+</div>
+<div style="  margin: 5px;   border: 1px solid #ccc;  float: left;  width: 170px;">
+  <a target="_blank" href="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios5.png">
+    <img style="  width: 100%;   height: auto;" src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios5.png" width="280">
+  </a>
+</div>
