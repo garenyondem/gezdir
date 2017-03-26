@@ -6,5 +6,4 @@ target 'GetirHackathon' do
   use_frameworks!
 
   # Pods for GetirHackathon
-  
 end

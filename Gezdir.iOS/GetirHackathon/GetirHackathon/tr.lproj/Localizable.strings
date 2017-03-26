@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  GetirHackathon
+
+  Created by Aleks Mutlu on 26/03/2017.
+  Copyright © 2017 Mutlu. All rights reserved.
+*/
+
+"unable_to_find_user" = "Kullanıcı bulunamadı";
+"missing_token" = "Token eksik";
+"unable_to_authenticate" = "Kimlik doğrulanamadı";
+"unable_to_create_event" = "Etkinlik oluşturulamadı";
+"unable_to_find_event" = "Etkinlik oluşturulamadı";
+"unable_to_find_events_nearby" = "Etkinlik bulunamadı";
+"unable_to_get_event_types" = "Etkinlik tipi bulunamadı";
+"unable_to_add_attendee" = "Katılımcı eklenemedi";
+"unable_to_create_ticket" = "Talep oluştururken bir hata oluştu";
+"unable_to_find_ticket" = "Talep bulunamadı";
+
+
+"an_error_occured" = "Bir hata oluştu";
+"warning" = "Uyarı";
+"empty_field" = "Tüm alanların doldurulduğundan emin olun";
+"error" = "Hata";
+"quota" = "Kota";
+"address_selected" = "Adres seçildi";
+"in_process" = "İşlem sürüyor";
+"attending" = "Katılıyorsunuz";
+"create_event" = "Etinlik Oluştur";
+"success" = "Başarılı";
+"ticket_accepted" = "Talep kabul edildi";
+"event_created" = "Etkinlik oluşturuldu";
+"reservation_complete" = "Rezervasiyon tamamlandı";
+"loggin_in" = "Giriş Yapılıyor";
+"search_address_or_location" = "Bir adres veya konum arayın";

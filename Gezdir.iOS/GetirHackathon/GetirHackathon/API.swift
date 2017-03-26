@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import SwiftyJSON
 
 class API: NSObject {
     

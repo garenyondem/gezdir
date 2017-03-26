@@ -176,7 +176,7 @@
                                     <constraint firstAttribute="height" constant="64" id="4AD-aO-f8G"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="555-m7-YRY">
+                                    <navigationItem title="Gezdir" id="555-m7-YRY">
                                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="2n2-xa-Yvj">
                                             <connections>
                                                 <segue destination="QEg-Pd-yj7" kind="unwind" unwindAction="rewindToMapVCWithSegue:" id="B7e-xf-Upf"/>

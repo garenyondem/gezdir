@@ -29,6 +29,7 @@
 		593F39261E85929A0027BE0C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F39251E85929A0027BE0C /* API.swift */; };
 		593F39281E859F400027BE0C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F39271E859F400027BE0C /* User.swift */; };
 		593F392B1E85A0400027BE0C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F392A1E85A0400027BE0C /* Event.swift */; };
+		594605A51E87776C009160D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 594605A71E87776C009160D9 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,10 @@
 		593F39251E85929A0027BE0C /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		593F39271E859F400027BE0C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		593F392A1E85A0400027BE0C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		594605A11E877604009160D9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Main.strings; sourceTree = "<group>"; };
+		594605A21E877605009160D9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		594605A81E877770009160D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		594605A91E877771009160D9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F78AD98C8A662F9D301FDEC /* Pods_GetirHackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetirHackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BE3B597EE43C2E5BDDA466 /* Pods-GetirHackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetirHackathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon.release.xcconfig"; sourceTree = "<group>"; };
 		D87ED7A76B02F2AFA7D710AF /* Pods-GetirHackathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetirHackathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +158,7 @@
 				591FBD761E86D94200E4804B /* Helpers */,
 				593F39291E859F430027BE0C /* Models */,
 				593A41AC1E85A705008A1CBD /* ViewControllers */,
+				594605A71E87776C009160D9 /* Localizable.strings */,
 			);
 			path = GetirHackathon;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 593F39071E85926B0027BE0C;
 			productRefGroup = 593F39111E85926C0027BE0C /* Products */;
@@ -248,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				593F391E1E85926C0027BE0C /* LaunchScreen.storyboard in Resources */,
+				594605A51E87776C009160D9 /* Localizable.strings in Resources */,
 				593F391B1E85926C0027BE0C /* Assets.xcassets in Resources */,
 				593F39191E85926C0027BE0C /* Main.storyboard in Resources */,
 			);
@@ -336,6 +344,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				593F39181E85926C0027BE0C /* Base */,
+				594605A11E877604009160D9 /* tr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -344,8 +353,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				593F391D1E85926C0027BE0C /* Base */,
+				594605A21E877605009160D9 /* tr */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		594605A71E87776C009160D9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				594605A81E877770009160D9 /* en */,
+				594605A91E877771009160D9 /* tr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -355,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -404,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
