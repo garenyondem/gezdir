@@ -18,7 +18,8 @@ const errorCodes = {
     unableToGetEventTypes: 'unable_to_get_event_types',
     unableToAddAttendee: 'unable_to_add_attendee',
     unableToCreateTicket: 'unable_to_create_ticket',
-    unableToFindTicket: 'unable_to_find_ticket'
+    unableToFindTicket: 'unable_to_find_ticket',
+    unableToFindSearchResult: 'unable_to_find_search_result'
 }
 
 const earthRadiusKm = 6371;

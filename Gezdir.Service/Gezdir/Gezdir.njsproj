@@ -41,6 +41,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="controllers\eventType.js" />
+    <Compile Include="controllers\search.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="controllers\ticket.js" />
     <Compile Include="controllers\user.js" />
     <Compile Include="db\db.js">
