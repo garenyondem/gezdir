@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3461E2AB0821A9A95C172EC3 /* Pods_GetirHackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F78AD98C8A662F9D301FDEC /* Pods_GetirHackathon.framework */; };
 		591FBD6D1E865B7F00E4804B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD6C1E865B7F00E4804B /* LocationManager.swift */; };
 		591FBD6F1E86A7CA00E4804B /* EventTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD6E1E86A7CA00E4804B /* EventTypeTableViewController.swift */; };
 		591FBD711E86A7EF00E4804B /* EventType+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD701E86A7EF00E4804B /* EventType+Services.swift */; };
-		591FBD731E86D73400E4804B /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD721E86D73400E4804B /* Animator.swift */; };
 		591FBD751E86D92C00E4804B /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD741E86D92C00E4804B /* EventDetailsViewController.swift */; };
 		593A41A51E85A1FE008A1CBD /* User+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41A41E85A1FE008A1CBD /* User+Services.swift */; };
 		593A41A81E85A20D008A1CBD /* Event+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A41A71E85A20D008A1CBD /* Event+Services.swift */; };
@@ -29,13 +29,13 @@
 		593F39261E85929A0027BE0C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F39251E85929A0027BE0C /* API.swift */; };
 		593F39281E859F400027BE0C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F39271E859F400027BE0C /* User.swift */; };
 		593F392B1E85A0400027BE0C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F392A1E85A0400027BE0C /* Event.swift */; };
+		594605A51E87776C009160D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 594605A71E87776C009160D9 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		591FBD6C1E865B7F00E4804B /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		591FBD6E1E86A7CA00E4804B /* EventTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTypeTableViewController.swift; sourceTree = "<group>"; };
 		591FBD701E86A7EF00E4804B /* EventType+Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventType+Services.swift"; sourceTree = "<group>"; };
-		591FBD721E86D73400E4804B /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		591FBD741E86D92C00E4804B /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		593A41A41E85A1FE008A1CBD /* User+Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Services.swift"; sourceTree = "<group>"; };
 		593A41A71E85A20D008A1CBD /* Event+Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+Services.swift"; sourceTree = "<group>"; };
@@ -56,6 +56,13 @@
 		593F39251E85929A0027BE0C /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		593F39271E859F400027BE0C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		593F392A1E85A0400027BE0C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		594605A11E877604009160D9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Main.strings; sourceTree = "<group>"; };
+		594605A21E877605009160D9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		594605A81E877770009160D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		594605A91E877771009160D9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9F78AD98C8A662F9D301FDEC /* Pods_GetirHackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetirHackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0BE3B597EE43C2E5BDDA466 /* Pods-GetirHackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetirHackathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon.release.xcconfig"; sourceTree = "<group>"; };
+		D87ED7A76B02F2AFA7D710AF /* Pods-GetirHackathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetirHackathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3461E2AB0821A9A95C172EC3 /* Pods_GetirHackathon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +83,6 @@
 				593A41AF1E85B8A3008A1CBD /* EventAnnotation.swift */,
 				591FBD6C1E865B7F00E4804B /* LocationManager.swift */,
 				593A41B11E85BD46008A1CBD /* Extensions.swift */,
-				591FBD721E86D73400E4804B /* Animator.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -126,6 +133,8 @@
 			children = (
 				593F39121E85926C0027BE0C /* GetirHackathon */,
 				593F39111E85926C0027BE0C /* Products */,
+				779A2D3BD652DD2CB6F62229 /* Pods */,
+				FAC9F72CEF8ACBD110F8BB19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +158,7 @@
 				591FBD761E86D94200E4804B /* Helpers */,
 				593F39291E859F430027BE0C /* Models */,
 				593A41AC1E85A705008A1CBD /* ViewControllers */,
+				594605A71E87776C009160D9 /* Localizable.strings */,
 			);
 			path = GetirHackathon;
 			sourceTree = "<group>";
@@ -163,6 +173,23 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		779A2D3BD652DD2CB6F62229 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D87ED7A76B02F2AFA7D710AF /* Pods-GetirHackathon.debug.xcconfig */,
+				A0BE3B597EE43C2E5BDDA466 /* Pods-GetirHackathon.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FAC9F72CEF8ACBD110F8BB19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F78AD98C8A662F9D301FDEC /* Pods_GetirHackathon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,9 +197,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 593F39221E85926C0027BE0C /* Build configuration list for PBXNativeTarget "GetirHackathon" */;
 			buildPhases = (
+				2E4A6BE71B01D991032AD091 /* [CP] Check Pods Manifest.lock */,
 				593F390C1E85926C0027BE0C /* Sources */,
 				593F390D1E85926C0027BE0C /* Frameworks */,
 				593F390E1E85926C0027BE0C /* Resources */,
+				669A57B5C3BC58D816D89FBF /* [CP] Embed Pods Frameworks */,
+				E38D0BF44536F77D898577C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,6 +237,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 593F39071E85926B0027BE0C;
 			productRefGroup = 593F39111E85926C0027BE0C /* Products */;
@@ -224,12 +255,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				593F391E1E85926C0027BE0C /* LaunchScreen.storyboard in Resources */,
+				594605A51E87776C009160D9 /* Localizable.strings in Resources */,
 				593F391B1E85926C0027BE0C /* Assets.xcassets in Resources */,
 				593F39191E85926C0027BE0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E4A6BE71B01D991032AD091 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		669A57B5C3BC58D816D89FBF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E38D0BF44536F77D898577C2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		593F390C1E85926C0027BE0C /* Sources */ = {
@@ -242,7 +322,6 @@
 				593A41B01E85B8A3008A1CBD /* EventAnnotation.swift in Sources */,
 				593A41BE1E85F156008A1CBD /* SelectAddressViewController.swift in Sources */,
 				593A41BC1E85F146008A1CBD /* SelectDateTableViewController.swift in Sources */,
-				591FBD731E86D73400E4804B /* Animator.swift in Sources */,
 				593A41B41E85E293008A1CBD /* EventType.swift in Sources */,
 				593A41BA1E85F136008A1CBD /* CreateEventTableViewController.swift in Sources */,
 				591FBD6F1E86A7CA00E4804B /* EventTypeTableViewController.swift in Sources */,
@@ -265,6 +344,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				593F39181E85926C0027BE0C /* Base */,
+				594605A11E877604009160D9 /* tr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -273,8 +353,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				593F391D1E85926C0027BE0C /* Base */,
+				594605A21E877605009160D9 /* tr */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		594605A71E87776C009160D9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				594605A81E877770009160D9 /* en */,
+				594605A91E877771009160D9 /* tr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -284,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -326,6 +417,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -333,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -367,12 +460,14 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		593F39231E85926C0027BE0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D87ED7A76B02F2AFA7D710AF /* Pods-GetirHackathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 54F54H9Y8X;
@@ -386,6 +481,7 @@
 		};
 		593F39241E85926C0027BE0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0BE3B597EE43C2E5BDDA466 /* Pods-GetirHackathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 54F54H9Y8X;

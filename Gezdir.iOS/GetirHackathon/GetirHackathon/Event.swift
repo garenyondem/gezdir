@@ -22,7 +22,7 @@ class Event {
     }
     var eventType: EventType!
     var quota: Int!
-    var attendeeCount: Int!
+    var attendeeCount: Int = 0
     var isAttending = false
     var guideName: String!
     

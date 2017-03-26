@@ -1,0 +1,102 @@
+
+/* Class = "UINavigationItem"; title = "Event Type"; ObjectID = "3eW-uA-iEr"; */
+"3eW-uA-iEr.title" = "Etkinlik Tipi";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "555-m7-YRY"; */
+"555-m7-YRY.title" = "Gezdir";
+
+/* Class = "UILabel"; text = "Quota:"; ObjectID = "8XB-6S-TEx"; */
+"8XB-6S-TEx.text" = "Kota:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "D52-Zs-vZZ"; */
+"D52-Zs-vZZ.text" = "Label";
+
+/* Class = "UISegmentedControl"; DWW-nI-UoE.segmentTitles[0] = "Event"; ObjectID = "DWW-nI-UoE"; */
+"DWW-nI-UoE.segmentTitles[0]" = "Etkinlik";
+
+/* Class = "UISegmentedControl"; DWW-nI-UoE.segmentTitles[1] = "Ticket"; ObjectID = "DWW-nI-UoE"; */
+"DWW-nI-UoE.segmentTitles[1]" = "Talep";
+
+/* Class = "UINavigationItem"; title = "Create"; ObjectID = "GYw-CT-ee2"; */
+"GYw-CT-ee2.title" = "Oluştur";
+
+/* Class = "UILabel"; text = "Not selected"; ObjectID = "Gv4-t4-6fY"; */
+"Gv4-t4-6fY.text" = "Seçilmemiş";
+
+/* Class = "UILabel"; text = "Not selected"; ObjectID = "Neh-rM-ZMi"; */
+"Neh-rM-ZMi.text" = "Seçilmemiş";
+
+/* Class = "UIButton"; normalTitle = "Attend"; ObjectID = "OTz-xy-vO1"; */
+"OTz-xy-vO1.normalTitle" = "Katıl";
+
+/* Class = "UILabel"; text = "Select event type"; ObjectID = "QJ5-Na-VMf"; */
+"QJ5-Na-VMf.text" = "Etkinlik tipi seçin";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "QWF-JL-THh"; */
+"QWF-JL-THh.normalTitle" = "+";
+
+/* Class = "UINavigationItem"; title = "Gezdir"; ObjectID = "REw-zE-mpy"; */
+"REw-zE-mpy.title" = "Gezdir";
+
+/* Class = "UILabel"; text = "Not selected"; ObjectID = "RJF-X0-kig"; */
+"RJF-X0-kig.text" = "Seçilmemiş";
+
+/* Class = "UITableViewSection"; headerTitle = "FROM"; ObjectID = "RtW-gX-jMp"; */
+"RtW-gX-jMp.headerTitle" = "BAŞLANGIÇ";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "Tmg-lf-kgo"; */
+"Tmg-lf-kgo.title" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UZd-O5-dEd"; */
+"UZd-O5-dEd.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "UNTIL"; ObjectID = "Xet-vc-9nL"; */
+"Xet-vc-9nL.headerTitle" = "BİTİŞ";
+
+/* Class = "UILabel"; text = "Select address"; ObjectID = "YEr-GP-btC"; */
+"YEr-GP-btC.text" = "Adres belirleyin";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZsI-Xy-WcV"; */
+"ZsI-Xy-WcV.text" = "Label";
+
+/* Class = "UILabel"; text = "Select date"; ObjectID = "hVg-63-CSG"; */
+"hVg-63-CSG.text" = "Tarih belirleyin";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "hYT-gj-VwK"; */
+"hYT-gj-VwK.placeholder" = "İsim";
+
+/* Class = "UINavigationItem"; title = "Address"; ObjectID = "iC4-0L-bee"; */
+"iC4-0L-bee.title" = "Adres";
+
+/* Class = "UILabel"; text = "Guide:"; ObjectID = "imA-Tm-mNj"; */
+"imA-Tm-mNj.text" = "Rehber:";
+
+/* Class = "UILabel"; text = "Quota: 1"; ObjectID = "kdz-ya-Mbg"; */
+"kdz-ya-Mbg.text" = "Kota: 1";
+
+/* Class = "UITableViewController"; title = "Time Interval"; ObjectID = "lli-X4-ukD"; */
+"lli-X4-ukD.title" = "Tarih belirleyin";
+
+/* Class = "UISegmentedControl"; q1s-Sg-rb5.segmentTitles[0] = "Events"; ObjectID = "q1s-Sg-rb5"; */
+"q1s-Sg-rb5.segmentTitles[0]" = "Etkinlikler";
+
+/* Class = "UISegmentedControl"; q1s-Sg-rb5.segmentTitles[1] = "Tickets"; ObjectID = "q1s-Sg-rb5"; */
+"q1s-Sg-rb5.segmentTitles[1]" = "Talepler"; ////////////////////// TODO
+
+/* Class = "UITextField"; placeholder = "Mail"; ObjectID = "sRC-2u-tEb"; */
+"sRC-2u-tEb.placeholder" = "Mail";
+
+/* Class = "UITextField"; text = "aleksmutlu@gmail.com"; ObjectID = "sRC-2u-tEb"; */
+"sRC-2u-tEb.text" = "aleksmutlu@gmail.com";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "txa-81-CMs"; */
+"txa-81-CMs.placeholder" = "Password";
+
+/* Class = "UITextField"; text = "12345"; ObjectID = "txa-81-CMs"; */
+"txa-81-CMs.text" = "12345";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "vUx-Ol-Br4"; */
+"vUx-Ol-Br4.normalTitle" = "Giriş Yap";
+
+/* Class = "UILabel"; text = "Gezdir"; ObjectID = "xLf-vH-KLS"; */
+"xLf-vH-KLS.text" = "Gezdir";

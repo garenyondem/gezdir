@@ -13,8 +13,9 @@ import MapKit
 extension Event {
     typealias EventListResult = ([Event]?, API.RequestError?) -> Void
     typealias CreateEventResult = (Event?, API.RequestError?) -> Void
-    typealias AttendEventResult = (API.RequestError?) -> Void
-
+    typealias AttendOrAcceptEventResult = (API.RequestError?) -> Void
+    
+    // MARK: - Public functions
     static func fetch(around location: CLLocationCoordinate2D, isTicket: Bool, completion: @escaping EventListResult) {
         
         if isTicket {
@@ -29,10 +30,37 @@ extension Event {
         }
     }
     
+    func createActivity(completion: @escaping CreateEventResult) {
+        if self.isTicket {
+            self.createTicket(completion: { (event, error) in
+                completion(event, error)
+            })
+        }
+        else {
+            self.createEvent(completion: { (event, error) in
+                completion(event, error)
+            })
+        }
+    }
+    
+    func attendOrAccept(completion: @escaping AttendOrAcceptEventResult) {
+        if self.isTicket {
+            self.acceptTicket(completion: { (error) in
+                completion(error)
+            })
+        }
+        else {
+            self.attend(completion: { (error) in
+                completion(error)
+            })
+        }
+    }
+    
+    // MARK: - Private functions
+    
     private static func events(around location: CLLocationCoordinate2D, completion: @escaping EventListResult) {
         
         API.shared.request(endpoint: .events(around: location)) { (jsonObject, error) in
-            print(jsonObject)
             var eventList = [Event]()
             
             guard error == nil else {
@@ -60,7 +88,6 @@ extension Event {
     private static func tickets(around location: CLLocationCoordinate2D, completion: @escaping EventListResult) {
         
         API.shared.request(endpoint: .tickets(around: location)) { (jsonObject, error) in
-            print(jsonObject)
             var eventList = [Event]()
             
             guard error == nil else {
@@ -83,19 +110,6 @@ extension Event {
             completion(eventList, nil)
         }
         
-    }
-    
-    func createActivity(completion: @escaping CreateEventResult) {
-        if self.isTicket {
-            self.createTicket(completion: { (event, error) in
-                completion(event, error)
-            })
-        }
-        else {
-            self.createEvent(completion: { (event, error) in
-                completion(event, error)
-            })
-        }
     }
     
     private func createEvent(completion: @escaping CreateEventResult) {
@@ -140,7 +154,7 @@ extension Event {
         }
     }
     
-    func attend(completion: @escaping AttendEventResult) {
+    private func attend(completion: @escaping AttendOrAcceptEventResult) {
         API.shared.request(endpoint: .attendEventBy(id: self.eventId)) { (_, error) in
             guard error == nil else {
                 completion(error)
@@ -151,4 +165,14 @@ extension Event {
         }
     }
     
+    private func acceptTicket(completion: @escaping AttendOrAcceptEventResult) {
+        API.shared.request(endpoint: .acceptTicket(id: self.eventId)) { (_, error) in
+            guard error == nil else {
+                completion(error)
+                return
+            }
+            
+            completion(nil)
+        }
+    }
 }

@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Spring
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var txtMail: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtMail: SpringTextField!
+    @IBOutlet weak var txtPassword: SpringTextField!
     @IBOutlet weak var btnLogin: UIButton!
     
     override func viewDidLoad() {
@@ -20,9 +21,21 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func btnLoginPressed(_ sender: UIButton) {
-        guard !self.txtMail.text!.isEmpty else { return }
-        guard !self.txtPassword.text!.isEmpty else { return }
+        var isValid = true
         
+        if self.txtMail.text!.isEmpty  {
+            self.txtMail.animation = "shake"
+            self.txtMail.animate()
+            isValid = false
+        }
+        
+        if self.txtPassword.text!.isEmpty {
+            self.txtPassword.animation = "shake"
+            self.txtPassword.animate()
+            isValid = false
+        }
+        
+        guard isValid else { return }
         self.btnLogin.isEnabled = false
         self.btnLogin.setTitle(NSLocalizedString("logging_in", comment: ""), for: .disabled)
         

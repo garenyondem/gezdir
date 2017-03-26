@@ -31,7 +31,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="aleksmutlu@gmail.com" borderStyle="roundedRect" placeholder="Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sRC-2u-tEb">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="aleksmutlu@gmail.com" borderStyle="roundedRect" placeholder="Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sRC-2u-tEb" customClass="SpringTextField" customModule="Spring">
                                         <rect key="frame" x="0.0" y="39" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="1Ip-oK-xt0"/>
@@ -41,7 +41,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txa-81-CMs">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txa-81-CMs" customClass="SpringTextField" customModule="Spring">
                                         <rect key="frame" x="0.0" y="89" width="200" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -176,7 +176,7 @@
                                     <constraint firstAttribute="height" constant="64" id="4AD-aO-f8G"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="555-m7-YRY">
+                                    <navigationItem title="Gezdir" id="555-m7-YRY">
                                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="2n2-xa-Yvj">
                                             <connections>
                                                 <segue destination="QEg-Pd-yj7" kind="unwind" unwindAction="rewindToMapVCWithSegue:" id="B7e-xf-Upf"/>
@@ -207,6 +207,7 @@
                         <outlet property="lblEventName" destination="ZsI-Xy-WcV" id="spJ-pa-If6"/>
                         <outlet property="lblGuideName" destination="D52-Zs-vZZ" id="1TS-tW-5KA"/>
                         <outlet property="mapView" destination="a9P-a3-DtI" id="sE4-iv-UGb"/>
+                        <outlet property="stackGuide" destination="ZZH-sO-gLR" id="oGe-yx-XEz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j2u-30-LJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,7 +243,7 @@
                                     <outlet property="delegate" destination="M6C-dd-IlK" id="xgB-kt-Gub"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-JL-THh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-JL-THh" customClass="SpringButton" customModule="Spring">
                                 <rect key="frame" x="157.5" y="587" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.20747290069999999" green="0.38191872339999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>

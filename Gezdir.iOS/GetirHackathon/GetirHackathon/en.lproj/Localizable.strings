@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  GetirHackathon
+
+  Created by Aleks Mutlu on 26/03/2017.
+  Copyright © 2017 Mutlu. All rights reserved.
+*/
+
+"unable_to_find_user" = "Unable to find user";
+"missing_token" = "Missing token";
+"unable_to_authenticate" = "Unable to authenticate";
+"unable_to_create_event" = "Unable to create an event";
+"unable_to_find_event" = "Unabele to find an event";
+"unable_to_find_events_nearby" = "No event nearby";
+"unable_to_get_event_types" = "Unable to get event types";
+"unable_to_add_attendee" = "Unable to add attenddee";
+"unable_to_create_ticket" = "Unable to create a ticket";
+"unable_to_find_ticket" = "Unable to find the ticket";
+
+
+"an_error_occured" = "An error occured";
+"warning" = "Warning";
+"empty_field" = "Make sure to fill all fileds";
+"error" = "Error";
+"quota" = "Quota";
+"address_selected" = "Address selected";
+"in_process" = "In Process";
+"attending" = "Attending";
+"create_event" = "Create an Event";
+"success" = "Success";
+"ticket_accepted" = "Ticket accepted";
+"event_created" = "Event created";
+"reservation_complete" = "Reservation complete";
+"loggin_in" = "Logging In";
+"search_address_or_location" = "Seach an address or a location";

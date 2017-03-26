@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Spring
 
 class MapViewController: UIViewController {
 
@@ -20,19 +21,22 @@ class MapViewController: UIViewController {
     
     var selectedEventToShow: Event?
     
-    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnAdd: SpringButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loggedIn), name: Notification.Name.loggedIn , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserLocationOnMap), name: Notification.Name.locationUpdated , object: nil)
         
+        self.btnAdd.layer.cornerRadius = self.btnAdd.frame.width/2
+        
         guard User.current != nil else {
             self.performSegue(withIdentifier: "sgLogin", sender: nil)
             return
         }
         
-        self.btnAdd.layer.cornerRadius = self.btnAdd.frame.width/2
+        self.btnAdd.animation = "morph"
+        self.btnAdd.animate()
         self.updateUserLocationOnMap()
         
         self.refreshEvents()
@@ -44,8 +48,8 @@ class MapViewController: UIViewController {
     
     fileprivate func refreshEvents() {
         if let userLocation = LocationManager.shared.lastKnownLocation {
-            
             let isTicket = self.segmentControl.selectedSegmentIndex == 1
+            
             Event.fetch(around: userLocation, isTicket: isTicket, completion: { [weak self] (eventList, error) in
                 if  error != nil,
                     case API.RequestError.serverSide(let message) = error! {
@@ -81,6 +85,7 @@ class MapViewController: UIViewController {
         else if segue.identifier == "sgEventDetails" {
             let vc = segue.destination as! EventDetailsViewController
             vc.event = self.selectedEventToShow
+            vc.delegate = self
             self.selectedEventToShow = nil
         }
     }
@@ -118,6 +123,13 @@ extension MapViewController {
 // MARK: - CreateEvent Delegate
 extension MapViewController: CreateEventDelegate{
     func eventCreated(event: Event) {
+        self.refreshEvents()
+    }
+}
+
+// MARK: - EventRequest Delegate
+extension MapViewController: EventRequestDelegate {
+    func requestSucceded() {
         self.refreshEvents()
     }
 }
