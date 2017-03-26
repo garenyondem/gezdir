@@ -15,7 +15,7 @@ class API: NSObject {
     
     static let shared = API()
     fileprivate let defaultSession: URLSession
-    fileprivate let baseUrl: String = "http://gezdirhack.herokuapp.com"
+    fileprivate let baseUrl: String = "https://gezdirhack.herokuapp.com"
     
     private override init() {
         let configuration = URLSessionConfiguration.default
