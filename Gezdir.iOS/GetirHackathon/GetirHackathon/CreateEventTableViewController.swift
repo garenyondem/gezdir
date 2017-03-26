@@ -95,6 +95,7 @@ class CreateEventTableViewController: UITableViewController {
     }
     
     private func request() {
+        self.event.quota = Int(self.sliderQuota.value)
         if self.event.isValidForRequest {
             self.event.createActivity(completion: { [weak self] (event, error) in
                 if  error != nil,
