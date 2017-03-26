@@ -16,7 +16,8 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 var Ticket = require('../models/ticket'),
-    User = require('../models/user');
+    User = require('../models/user'),
+    Event = require('../models/event');
 
 // creates new ticket
 router.post('/', authenticate, (req, res) => {
@@ -127,7 +128,46 @@ router.get('/', authenticate, (req, res) => {
 
 // create event from ticket
 router.get('/:id/accept', authenticate, (req, res) => {
+    var ticketId = req.params.id;
 
+    function createEventFromTicket(guideId, ticket, callback) {
+        Event.create({
+            guide: guideId,
+            attendees: [ticket.owner],
+            creationDate: new Date(ticket.creationDate),
+            expirationDate: new Date(ticket.expirationDate),
+            location: ticket.location,
+            eventType: ticket.eventType,
+            quota: +ticket.quota,
+            name: ticket.name
+        }, callback);
+    };
+    async.parallel([
+        (callback) => {
+            var query = { token: req.headers.token },
+                projection = { _id: 1 };
+            User.findOne(query, projection, callback)
+        },
+        (callback) => Ticket.findById(ticketId, callback)
+    ], (err, results) => {
+        if (!err && _is.existy(results[0]) && _is.existy(results[1])) {
+            var guideId = results[0]._id,
+                ticket = results[1];
+            async.series([
+                (callback) => createEventFromTicket(guideId, ticket, callback),
+                (callback) => Ticket.findByIdAndRemove(ticket._id, callback)
+            ], (err, results) => {
+                if (!err) {
+                    var event = results[0];
+                    res.status(200).send(event);
+                } else {
+                    res.status(500).send(error(constants.errorCodes.unableToCreateEvent));
+                }
+            });
+        } else {
+            res.status(500).send(error(constants.errorCodes.unableToFindTicket));
+        }
+    });
 });
 
 module.exports = router;
