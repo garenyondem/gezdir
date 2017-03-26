@@ -15,7 +15,7 @@ class API: NSObject {
     
     static let shared = API()
     fileprivate let defaultSession: URLSession
-    fileprivate let baseUrl: String = "https://gezdirhack.herokuapp.com"
+    fileprivate let baseUrl: String = "http://gezdirhack.herokuapp.com"
     
     private override init() {
         let configuration = URLSessionConfiguration.default
@@ -37,6 +37,7 @@ extension API {
         case eventTypes
         case attendEventBy(id: String)
         case acceptTicket(id: String)
+        case search(event: Event)
         
         var method: String {
             switch self {
@@ -49,6 +50,7 @@ extension API {
             case .eventTypes: return RequestType.get.rawValue
             case .attendEventBy: return RequestType.put.rawValue
             case .acceptTicket: return RequestType.get.rawValue
+            case .search: return RequestType.post.rawValue
             }
         }
         
@@ -63,6 +65,7 @@ extension API {
             case .eventTypes: return "/eventTypes"
             case .attendEventBy(let id): return "/events/\(id)"
             case .acceptTicket(let id): return "/tickets/\(id)/accept"
+            case .search: return "/search"
             }
         }
         
@@ -100,6 +103,19 @@ extension API {
                 break
             case .acceptTicket:
                 break
+            case .search(let event):
+                parameters["coordinates"] = [event.location.longitude, event.location.latitude]
+                parameters["isTicket"] = event.isTicket ? "true" : "false"
+                if event.attendeeCount > 0 {
+                    parameters["attendeeCount"] = event.attendeeCount
+                }
+                if event.eventType != nil {
+                    parameters["eventType"] = event.eventType.key
+                }
+                if event.creationDate != nil {
+                    parameters["fromDate"] = event.creationDate.forApiFormatedString
+                    parameters["untilDate"] = event.expirationDate.forApiFormatedString
+                }
             }
             
             return parameters

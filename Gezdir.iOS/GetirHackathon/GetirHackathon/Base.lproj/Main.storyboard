@@ -213,7 +213,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j2u-30-LJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QEg-Pd-yj7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1885.5999999999999" y="-550.07496251874068"/>
+            <point key="canvasLocation" x="1886" y="-544"/>
         </scene>
         <!--Gezdir-->
         <scene sceneID="5UM-jJ-oq1">
@@ -255,6 +255,7 @@
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="4"/>
                                 <state key="normal" title="+"/>
                                 <connections>
+                                    <action selector="btnAddPressed:" destination="M6C-dd-IlK" eventType="touchUpInside" id="b6u-kN-kwl"/>
                                     <segue destination="0dB-Rx-ijd" kind="presentation" identifier="sgCreate" id="wQw-Id-dvN"/>
                                 </connections>
                             </button>
@@ -272,7 +273,13 @@
                             <constraint firstItem="QWF-JL-THh" firstAttribute="centerX" secondItem="ksc-U7-Gpj" secondAttribute="centerX" id="svo-pA-Bar"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Gezdir" id="REw-zE-mpy"/>
+                    <navigationItem key="navigationItem" title="Gezdir" id="REw-zE-mpy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Zi7-da-a0k">
+                            <connections>
+                                <action selector="btnSearchPressed:" destination="M6C-dd-IlK" id="vwi-QT-DiI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnAdd" destination="QWF-JL-THh" id="YjE-YI-iTj"/>
                         <outlet property="mapView" destination="Vl4-Yq-Hn6" id="n67-zK-A7t"/>
@@ -491,6 +498,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnSave" destination="scR-fz-xfz" id="MsQ-fi-VaL"/>
                         <outlet property="lblAddress" destination="Neh-rM-ZMi" id="l0K-UW-qWO"/>
                         <outlet property="lblEventType" destination="RJF-X0-kig" id="mNd-e4-O2s"/>
                         <outlet property="lblQuota" destination="kdz-ya-Mbg" id="ya9-e5-8go"/>

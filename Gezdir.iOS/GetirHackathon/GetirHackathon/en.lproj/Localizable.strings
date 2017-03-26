@@ -34,3 +34,6 @@
 "logging_in" = "Logging In";
 "search_address_or_location" = "Seach an address or a location";
 "quota_full" = "Quota full";
+"search" = "Search";
+"user_location" = "User location";
+"unable_to_find_search_result" = "Unable to find a search result";

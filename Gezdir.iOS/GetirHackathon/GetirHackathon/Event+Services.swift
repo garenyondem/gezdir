@@ -56,8 +56,32 @@ extension Event {
         }
     }
     
-    // MARK: - Private functions
+    func search(completion: @escaping EventListResult) {
+        API.shared.request(endpoint: .search(event: self)) { (jsonObject, error) in
+            var eventList = [Event]()
+            
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let rootJson = jsonObject as? [Any] else {
+                completion(nil, .parse)
+                return
+            }
+            
+            rootJson.forEach { eventData in
+                if let eventDataJson = eventData as? [String: Any],
+                    let event = Event(with: eventDataJson) {
+                    eventList.append(event)
+                }
+            }
+            
+            completion(eventList, nil)
+        }
+    }
     
+    // MARK: - Private functions
     private static func events(around location: CLLocationCoordinate2D, completion: @escaping EventListResult) {
         
         API.shared.request(endpoint: .events(around: location)) { (jsonObject, error) in

@@ -11,6 +11,11 @@ import MapKit
 
 protocol CreateEventDelegate {
     func eventCreated(event: Event)
+    func search(with result: [Event], segmentIndex: Int)
+}
+
+enum SearchOrCreate {
+    case search, create
 }
 
 class CreateEventTableViewController: UITableViewController {
@@ -21,16 +26,25 @@ class CreateEventTableViewController: UITableViewController {
     @IBOutlet weak var sliderQuota: UISlider!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblEventType: UILabel!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     
     fileprivate var event: Event!
     
     var delegateEventCreation: CreateEventDelegate?
+    
+    var searchOrCreate: SearchOrCreate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.event = Event()
         self.event.quota = 0
+        
+        if self.searchOrCreate == .search {
+            self.title = NSLocalizedString("search", comment: "")
+            self.btnSave.title = NSLocalizedString("search", comment: "")
+            self.lblAddress.text = NSLocalizedString("user_location", comment: "")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,14 +83,18 @@ class CreateEventTableViewController: UITableViewController {
     
     // MARK: - IBActions
     @IBAction func btnSavePressed(_ sender: UIBarButtonItem) {
-        if self.txtName.text!.isEmpty {
-            self.alert(title: NSLocalizedString("warning", comment: ""), message: NSLocalizedString("empty_field", comment: ""))
-            return
-        }
-        
         self.event.name = self.txtName.text
         self.event.isTicket = self.segmentGroupType.selectedSegmentIndex == 1
         
+        if self.searchOrCreate == .create {
+            self.request()
+        }
+        else {
+            self.search()
+        }
+    }
+    
+    private func request() {
         if self.event.isValidForRequest {
             self.event.createActivity(completion: { [weak self] (event, error) in
                 if  error != nil,
@@ -98,9 +116,37 @@ class CreateEventTableViewController: UITableViewController {
                     self?.delegateEventCreation?.eventCreated(event: event!)
                 }
             })
-                
-        
         }
+        else {
+            self.alert(title: NSLocalizedString("warning", comment: ""), message: NSLocalizedString("empty_field", comment: ""))
+        }
+    }
+    
+    private func search() {
+        if self.event.location == nil {
+            self.event.location = LocationManager.shared.lastKnownLocation!
+        }
+        self.event.search(completion: { [weak self] (eventList, error) in
+            if  error != nil,
+                case API.RequestError.serverSide(let message) = error! {
+                DispatchQueue.main.async {
+                    self?.alert(title: NSLocalizedString("error", comment: ""), message: message)
+                }
+                return
+            }
+            else if error != nil {
+                DispatchQueue.main.async {
+                    self?.alert(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("an_error_occured", comment: ""))
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self?.dismiss(animated: true, completion: nil)
+                self?.delegateEventCreation?.search(with: eventList!, segmentIndex: (self?.segmentGroupType.selectedSegmentIndex)!)
+            }
+            
+        })
     }
     
     @IBAction func sliderQuotaValueChanged(_ sender: UISlider) {
@@ -149,5 +195,22 @@ extension CreateEventTableViewController: EventTypeSelectionDelegate {
     func eventTypeSelected(eventType: EventType) {
         self.event.eventType = eventType
         self.lblEventType.text = eventType.value
+    }
+}
+
+// MARK: - TableView Delegate 
+extension CreateEventTableViewController {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if self.searchOrCreate == .search {
+            if indexPath.section == 0 {
+                return 0
+            }
+            else if indexPath.section == 4 && self.segmentGroupType.selectedSegmentIndex == 1 {
+                return 0
+            }
+        }
+        
+        return 52
     }
 }

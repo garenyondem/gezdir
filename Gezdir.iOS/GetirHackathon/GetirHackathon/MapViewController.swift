@@ -19,6 +19,8 @@ class MapViewController: UIViewController {
     
     fileprivate var eventList = [Event]()
     
+    fileprivate var searchOrCreate: SearchOrCreate?
+    
     var selectedEventToShow: Event?
     
     @IBOutlet weak var btnAdd: SpringButton!
@@ -80,6 +82,7 @@ class MapViewController: UIViewController {
             if let navigationController = segue.destination as? UINavigationController,
                 let vc = navigationController.viewControllers[0] as? CreateEventTableViewController {
                 vc.delegateEventCreation = self
+                vc.searchOrCreate = self.searchOrCreate
             }
         }
         else if segue.identifier == "sgEventDetails" {
@@ -91,10 +94,19 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func segmentControlValueChanged(_ sender: UISegmentedControl) {
+        guard self.searchOrCreate != .search else { return }
         self.mapView.removeAllEvents()
         self.refreshEvents()
     }
     
+    @IBAction func btnSearchPressed(_ sender: UIBarButtonItem) {
+        self.searchOrCreate = .search
+        self.performSegue(withIdentifier: "sgCreate", sender: nil)
+    }
+    
+    @IBAction func btnAddPressed(_ sender: UIButton) {
+        self.searchOrCreate = .create
+    }
 }
 
 // MARK: - Functions 
@@ -124,6 +136,13 @@ extension MapViewController {
 extension MapViewController: CreateEventDelegate{
     func eventCreated(event: Event) {
         self.refreshEvents()
+    }
+    
+    func search(with result: [Event], segmentIndex: Int) {
+        self.segmentControl.selectedSegmentIndex = segmentIndex
+        self.searchOrCreate = nil
+        self.eventList = result
+        self.populateMap()
     }
 }
 
