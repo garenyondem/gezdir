@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3461E2AB0821A9A95C172EC3 /* Pods_GetirHackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F78AD98C8A662F9D301FDEC /* Pods_GetirHackathon.framework */; };
 		591FBD6D1E865B7F00E4804B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD6C1E865B7F00E4804B /* LocationManager.swift */; };
 		591FBD6F1E86A7CA00E4804B /* EventTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD6E1E86A7CA00E4804B /* EventTypeTableViewController.swift */; };
 		591FBD711E86A7EF00E4804B /* EventType+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591FBD701E86A7EF00E4804B /* EventType+Services.swift */; };
@@ -54,6 +55,9 @@
 		593F39251E85929A0027BE0C /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		593F39271E859F400027BE0C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		593F392A1E85A0400027BE0C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9F78AD98C8A662F9D301FDEC /* Pods_GetirHackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetirHackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0BE3B597EE43C2E5BDDA466 /* Pods-GetirHackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetirHackathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon.release.xcconfig"; sourceTree = "<group>"; };
+		D87ED7A76B02F2AFA7D710AF /* Pods-GetirHackathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetirHackathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3461E2AB0821A9A95C172EC3 /* Pods_GetirHackathon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +128,8 @@
 			children = (
 				593F39121E85926C0027BE0C /* GetirHackathon */,
 				593F39111E85926C0027BE0C /* Products */,
+				779A2D3BD652DD2CB6F62229 /* Pods */,
+				FAC9F72CEF8ACBD110F8BB19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +167,23 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		779A2D3BD652DD2CB6F62229 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D87ED7A76B02F2AFA7D710AF /* Pods-GetirHackathon.debug.xcconfig */,
+				A0BE3B597EE43C2E5BDDA466 /* Pods-GetirHackathon.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FAC9F72CEF8ACBD110F8BB19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F78AD98C8A662F9D301FDEC /* Pods_GetirHackathon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -167,9 +191,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 593F39221E85926C0027BE0C /* Build configuration list for PBXNativeTarget "GetirHackathon" */;
 			buildPhases = (
+				2E4A6BE71B01D991032AD091 /* [CP] Check Pods Manifest.lock */,
 				593F390C1E85926C0027BE0C /* Sources */,
 				593F390D1E85926C0027BE0C /* Frameworks */,
 				593F390E1E85926C0027BE0C /* Resources */,
+				669A57B5C3BC58D816D89FBF /* [CP] Embed Pods Frameworks */,
+				E38D0BF44536F77D898577C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,6 +254,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E4A6BE71B01D991032AD091 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		669A57B5C3BC58D816D89FBF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E38D0BF44536F77D898577C2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GetirHackathon/Pods-GetirHackathon-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		593F390C1E85926C0027BE0C /* Sources */ = {
@@ -369,6 +444,7 @@
 		};
 		593F39231E85926C0027BE0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D87ED7A76B02F2AFA7D710AF /* Pods-GetirHackathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 54F54H9Y8X;
@@ -382,6 +458,7 @@
 		};
 		593F39241E85926C0027BE0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0BE3B597EE43C2E5BDDA466 /* Pods-GetirHackathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 54F54H9Y8X;

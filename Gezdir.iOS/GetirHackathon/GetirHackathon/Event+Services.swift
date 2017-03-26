@@ -61,7 +61,6 @@ extension Event {
     private static func events(around location: CLLocationCoordinate2D, completion: @escaping EventListResult) {
         
         API.shared.request(endpoint: .events(around: location)) { (jsonObject, error) in
-            print(jsonObject)
             var eventList = [Event]()
             
             guard error == nil else {
@@ -89,7 +88,6 @@ extension Event {
     private static func tickets(around location: CLLocationCoordinate2D, completion: @escaping EventListResult) {
         
         API.shared.request(endpoint: .tickets(around: location)) { (jsonObject, error) in
-            print(jsonObject)
             var eventList = [Event]()
             
             guard error == nil else {
