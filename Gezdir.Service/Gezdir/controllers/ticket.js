@@ -55,11 +55,11 @@ router.post('/', authenticate, (req, res) => {
         }
     ], (err, result) => {
         if (!err) {
-            var ticket = results.ticket.toObject(),
+            var ticket = result.ticket.toObject(),
                 userLanguage = result.userLanguage;
             ticket.eventType = {
-                name: Dictionary(userLanguage).eventTypeName[event.eventType],
-                type: event.eventType
+                name: Dictionary(userLanguage).eventTypeName[ticket.eventType],
+                type: ticket.eventType
             }
             res.status(200).send(ticket);
         } else {
