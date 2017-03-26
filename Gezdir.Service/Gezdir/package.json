@@ -13,6 +13,7 @@
   "dependencies": {
     "async": "^2.1.5",
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
     "chalk": "^1.1.3",
     "express": "^4.15.2",
     "is_js": "^0.9.0",
