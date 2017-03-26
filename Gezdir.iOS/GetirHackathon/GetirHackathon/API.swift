@@ -29,9 +29,11 @@ class API: NSObject {
 extension API {
     enum Endpoints {
         case login(mail: String, password: String, language: String)
-        case events(around: CLLocationCoordinate2D, groupType: GroupType)
+        case events(around: CLLocationCoordinate2D)
         case event(id: String)
+        case tickets(around: CLLocationCoordinate2D)
         case createEvent(event: Event)
+        case createTicket(ticket: Event)
         case eventTypes
         case attendEventBy(id: String)
         
@@ -41,6 +43,8 @@ extension API {
             case .events: return RequestType.get.rawValue
             case .event: return RequestType.get.rawValue
             case .createEvent: return RequestType.post.rawValue
+            case .tickets: return RequestType.get.rawValue
+            case .createTicket: return RequestType.post.rawValue
             case .eventTypes: return RequestType.get.rawValue
             case .attendEventBy: return RequestType.put.rawValue
             }
@@ -52,6 +56,8 @@ extension API {
             case .events: return "/events"
             case .event: return "/events"
             case .createEvent: return "/events"
+            case .tickets: return "/tickets"
+            case .createTicket: return "/tickets"
             case .eventTypes: return "/eventTypes"
             case .attendEventBy(let id): return "/events/\(id)"
             }
@@ -67,6 +73,8 @@ extension API {
                 parameters["language"] = language
             case .events:
                 break
+            case .tickets:
+                break
             case .event:
                 break
             case .createEvent(let event):
@@ -74,9 +82,15 @@ extension API {
                 parameters["creationDate"] = event.creationDate.forApiFormatedString
                 parameters["expirationDate"] = event.expirationDate.forApiFormatedString
                 parameters["eventType"] = event.eventType.key
-                parameters["groupType"] = event.groupType.rawValue
                 parameters["coordinates"] = [event.location.longitude, event.location.latitude]
                 parameters["quota"] = event.quota
+            case .createTicket(let ticket):
+                parameters["name"] = ticket.name
+                parameters["creationDate"] = ticket.creationDate.forApiFormatedString
+                parameters["expirationDate"] = ticket.expirationDate.forApiFormatedString
+                parameters["eventType"] = ticket.eventType.key
+                parameters["coordinates"] = [ticket.location.longitude, ticket.location.latitude]
+                parameters["quota"] = ticket.quota
             case .eventTypes:
                 break
             case .attendEventBy:
@@ -88,14 +102,17 @@ extension API {
         
         var queryItems: [URLQueryItem]? {
             switch self {
-            case .events(let around, let groupType):
+            case .events(let around):
                 let q1 = URLQueryItem(name: "latitude", value: String(around.latitude))
                 let q2 = URLQueryItem(name: "longitude", value: String(around.longitude))
-                let q3 = URLQueryItem(name: "groupType", value: groupType.rawValue)
-                return [q1, q2, q3]
+                return [q1, q2]
             case .event(let id):
                 let q1 = URLQueryItem(name: "id", value: id)
                 return [q1]
+            case .tickets(let around):
+                let q1 = URLQueryItem(name: "latitude", value: String(around.latitude))
+                let q2 = URLQueryItem(name: "longitude", value: String(around.longitude))
+                return [q1, q2]
             default: return nil
             }
             
