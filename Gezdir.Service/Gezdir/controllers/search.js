@@ -19,7 +19,7 @@ var Event = require('../models/event'),
     User = require('../models/user');
 
 router.post('/', authenticate, (req, res) => {
-    var isTicket = req.body.isTicket,
+    var isTicket = JSON.parse(req.body.isTicket),
         eventType = req.body.eventType,
         fromDate = req.body.fromDate,
         //untilDate = req.body.untilDate,
@@ -89,7 +89,6 @@ router.post('/', authenticate, (req, res) => {
             var user = results[0],
                 items = results[1],
                 dict = Dictionary(user.language);
-
             async.map(items, (item, callback) => {
                 item.eventType = {
                     name: dict.eventTypeName[item.eventType],
