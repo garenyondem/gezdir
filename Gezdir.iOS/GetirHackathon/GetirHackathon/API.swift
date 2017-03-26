@@ -15,7 +15,7 @@ class API: NSObject {
     
     static let shared = API()
     fileprivate let defaultSession: URLSession
-    fileprivate let baseUrl: String = "http://gezdir.com"
+    fileprivate let baseUrl: String = "https://gezdirhack.herokuapp.com"
     
     private override init() {
         let configuration = URLSessionConfiguration.default
@@ -162,7 +162,6 @@ extension API {
         
         if  endpoint.needsAuthorization,
             let token = User.current?.token {
-            //request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.addValue(token, forHTTPHeaderField: "Token")
         }
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

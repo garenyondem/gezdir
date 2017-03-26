@@ -149,16 +149,13 @@
 		593F39121E85926C0027BE0C /* GetirHackathon */ = {
 			isa = PBXGroup;
 			children = (
-				593F39131E85926C0027BE0C /* AppDelegate.swift */,
-				593F39171E85926C0027BE0C /* Main.storyboard */,
-				593F391A1E85926C0027BE0C /* Assets.xcassets */,
-				593F391C1E85926C0027BE0C /* LaunchScreen.storyboard */,
 				593F391F1E85926C0027BE0C /* Info.plist */,
+				593F39131E85926C0027BE0C /* AppDelegate.swift */,
 				593F39251E85929A0027BE0C /* API.swift */,
+				594605AA1E8792C9009160D9 /* UI */,
 				591FBD761E86D94200E4804B /* Helpers */,
 				593F39291E859F430027BE0C /* Models */,
 				593A41AC1E85A705008A1CBD /* ViewControllers */,
-				594605A71E87776C009160D9 /* Localizable.strings */,
 			);
 			path = GetirHackathon;
 			sourceTree = "<group>";
@@ -171,6 +168,17 @@
 				593A41B51E85E3BE008A1CBD /* EventType */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		594605AA1E8792C9009160D9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				593F39171E85926C0027BE0C /* Main.storyboard */,
+				593F391A1E85926C0027BE0C /* Assets.xcassets */,
+				593F391C1E85926C0027BE0C /* LaunchScreen.storyboard */,
+				594605A71E87776C009160D9 /* Localizable.strings */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		779A2D3BD652DD2CB6F62229 /* Pods */ = {
