@@ -44,4 +44,4 @@ $ npm start
 ```
 ##### IOS
 
-![alt-text-1](https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios.png "title-1") ![alt-text-2](https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios2.png "title-2") ![alt-text-1](https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios3.png "title-1") ![alt-text-1](https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios4.png "title-1") ![alt-text-1](https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios5.png "title-1")
+<img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios1.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios2.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios3.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios4.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios5.png" width="250"/>
