@@ -44,8 +44,8 @@ class MapViewController: UIViewController {
     
     fileprivate func refreshEvents() {
         if let userLocation = LocationManager.shared.lastKnownLocation {
-            
             let isTicket = self.segmentControl.selectedSegmentIndex == 1
+            
             Event.fetch(around: userLocation, isTicket: isTicket, completion: { [weak self] (eventList, error) in
                 if  error != nil,
                     case API.RequestError.serverSide(let message) = error! {
@@ -81,6 +81,7 @@ class MapViewController: UIViewController {
         else if segue.identifier == "sgEventDetails" {
             let vc = segue.destination as! EventDetailsViewController
             vc.event = self.selectedEventToShow
+            vc.delegate = self
             self.selectedEventToShow = nil
         }
     }
@@ -118,6 +119,13 @@ extension MapViewController {
 // MARK: - CreateEvent Delegate
 extension MapViewController: CreateEventDelegate{
     func eventCreated(event: Event) {
+        self.refreshEvents()
+    }
+}
+
+// MARK: - EventRequest Delegate
+extension MapViewController: EventRequestDelegate {
+    func requestSucceded() {
         self.refreshEvents()
     }
 }

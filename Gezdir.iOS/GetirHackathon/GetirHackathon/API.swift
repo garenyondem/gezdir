@@ -36,6 +36,7 @@ extension API {
         case createTicket(ticket: Event)
         case eventTypes
         case attendEventBy(id: String)
+        case acceptTicket(id: String)
         
         var method: String {
             switch self {
@@ -47,6 +48,7 @@ extension API {
             case .createTicket: return RequestType.post.rawValue
             case .eventTypes: return RequestType.get.rawValue
             case .attendEventBy: return RequestType.put.rawValue
+            case .acceptTicket: return RequestType.get.rawValue
             }
         }
         
@@ -60,6 +62,7 @@ extension API {
             case .createTicket: return "/tickets"
             case .eventTypes: return "/eventTypes"
             case .attendEventBy(let id): return "/events/\(id)"
+            case .acceptTicket(let id): return "/tickets/\(id)/accept"
             }
         }
         
@@ -94,6 +97,8 @@ extension API {
             case .eventTypes:
                 break
             case .attendEventBy:
+                break
+            case .acceptTicket:
                 break
             }
             

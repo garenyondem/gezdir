@@ -207,6 +207,7 @@
                         <outlet property="lblEventName" destination="ZsI-Xy-WcV" id="spJ-pa-If6"/>
                         <outlet property="lblGuideName" destination="D52-Zs-vZZ" id="1TS-tW-5KA"/>
                         <outlet property="mapView" destination="a9P-a3-DtI" id="sE4-iv-UGb"/>
+                        <outlet property="stackGuide" destination="ZZH-sO-gLR" id="oGe-yx-XEz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j2u-30-LJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
