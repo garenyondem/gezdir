@@ -9,7 +9,8 @@ var express = require('express'),
     authenticate = require('./authenticate'),
     async = require('async'),
     _ = require('lodash'),
-    Dictionary = require('../localization/dictionary');
+    Dictionary = require('../localization/dictionary'),
+    radian = require('../helpers/radian');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -70,10 +71,63 @@ router.post('/', authenticate, (req, res) => {
 
 // returns nearby tickets
 router.get('/', authenticate, (req, res) => {
+    var userLocation = [
+        req.query.longitude,
+        req.query.latitude
+    ];
+    var query = {
+        expirationDate: {
+            $gt: new Date()
+        },
+        location: {
+            $geoWithin: {
+                $centerSphere: [
+                    userLocation,
+                    radian(10)
+                ]
+            }
+        }
+    }
+
+    async.parallel([
+        (callback) => {
+            var query = { token: req.headers.token }
+            var projection = { _id: 1, language: 1 }
+            User.findOne(query, projection, callback);
+        },
+        (callback) => Ticket.find(query).lean().exec(callback)
+    ], (err, results) => {
+        if (!err && _is.existy(results[1])) {
+            var user = results[0],
+                tickets = results[1],
+                dict = Dictionary(user.language);
+
+            async.map(tickets, (ticket, callback) => {
+                ticket.eventType = {
+                    name: dict.eventTypeName[ticket.eventType],
+                    type: ticket.eventType
+                }
+                var projection = { nameSurname: 1 }
+                User.findById(ticket.owner, projection, (err, owner) => {
+                    ticket.ownerName = !err ? owner.nameSurname : '';
+                    callback(null, ticket);
+                });
+            }, (err, tickets) => {
+                if (!err) {
+                    res.status(200).send(tickets);
+                } else {
+                    res.status(500).send(error(constants.errorCodes.unableToFindTicket));
+                }
+            });
+        } else {
+            res.status(500).send(error(constants.errorCodes.unableToFindTicket));
+        }
+    });
 });
 
 // create event from ticket
 router.get('/:id/accept', authenticate, (req, res) => {
+
 });
 
 module.exports = router;
