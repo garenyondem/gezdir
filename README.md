@@ -27,6 +27,8 @@ Gezdir uses a number of open source projects to work properly:
 * [Mongoose](http://mongoosejs.com/) - object modeling tool for node.js
 * [Strongloop Cluster](https://www.npmjs.com/package/strong-cluster-control) - cluster control for node.js
 * [Chalk](https://www.npmjs.com/package/chalk) - terminal string styling
+* [CocoaPods](https://cocoapods.org) - dependency manager for swift
+* [Spring](https://github.com/MengTo/Spring) - animation library for swift
 
 ### Installation
 ##### Service
@@ -46,5 +48,7 @@ $ npm start
 App's default port is 8810
 
 ##### IOS
+Localization: App is capable of showing both server and client side error messages in two languages (Turkish, English)
+Forward Geocoding: Using MKLocalSearch class
 
 <img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios1.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios2.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios3.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios4.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios5.png" width="250"/>
