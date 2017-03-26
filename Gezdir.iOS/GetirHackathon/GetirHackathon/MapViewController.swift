@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Spring
 
 class MapViewController: UIViewController {
 
@@ -20,19 +21,22 @@ class MapViewController: UIViewController {
     
     var selectedEventToShow: Event?
     
-    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnAdd: SpringButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loggedIn), name: Notification.Name.loggedIn , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserLocationOnMap), name: Notification.Name.locationUpdated , object: nil)
         
+        self.btnAdd.layer.cornerRadius = self.btnAdd.frame.width/2
+        
         guard User.current != nil else {
             self.performSegue(withIdentifier: "sgLogin", sender: nil)
             return
         }
         
-        self.btnAdd.layer.cornerRadius = self.btnAdd.frame.width/2
+        self.btnAdd.animation = "morph"
+        self.btnAdd.animate()
         self.updateUserLocationOnMap()
         
         self.refreshEvents()
