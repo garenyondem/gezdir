@@ -49,6 +49,7 @@
     <Compile Include="helpers\error.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="helpers\radian.js" />
     <Compile Include="localization\dictionary.en.js" />
     <Compile Include="localization\dictionary.js">
       <SubType>Code</SubType>

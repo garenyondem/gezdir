@@ -9,7 +9,8 @@ var express = require('express'),
     authenticate = require('./authenticate'),
     async = require('async'),
     _ = require('lodash'),
-    Dictionary = require('../localization/dictionary');
+    Dictionary = require('../localization/dictionary'),
+    radian = require('../helpers/radian');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -76,9 +77,6 @@ router.get('/', authenticate, (req, res) => {
         req.query.longitude,
         req.query.latitude
     ];
-    function toRadian(kms) {
-        return kms / constants.earthRadiusKm;
-    }
     var query = {
         expirationDate: {
             $gt: new Date()
@@ -87,7 +85,7 @@ router.get('/', authenticate, (req, res) => {
             $geoWithin: {
                 $centerSphere: [
                     userLocation,
-                    toRadian(1)
+                    radian(1)
                 ]
             }
         }
