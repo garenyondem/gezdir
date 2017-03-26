@@ -85,7 +85,7 @@ router.get('/', authenticate, (req, res) => {
             $geoWithin: {
                 $centerSphere: [
                     userLocation,
-                    radian(1)
+                    radian(10)
                 ]
             }
         }
