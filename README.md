@@ -17,21 +17,21 @@ You can find enjoyable events or create your own to show your hospitality. You c
 
 Gezdir uses a number of open source projects to work properly:
 
-* [Node.js] - evented I/O for the javascript
-* [Swift] - general purpose programming language
-* [MongoDB] - open source NoSql database engine
-* [Express] - web application framework
-* [Async] - async utilities for node.js
-* [Lodash] - js utility lib. for performance
-* [is_js] - micro check library
-* [Mongoose] - object modeling tool for node.js
-* [Strongloop Cluster] - cluster control for node.js
-* [Chalk] - terminal string styling
+* [Node.js](https://nodejs.org/) - evented I/O for the javascript
+* [Swift](https://swift.org/) - general purpose programming language
+* [MongoDB](https://www.mongodb.com/scale/database-software-open-source) - open source NoSql database engine
+* [Express](https://expressjs.com/) - web application framework
+* [Async](https://caolan.github.io/async/) - async utilities for node.js
+* [Lodash](https://lodash.com/) - js utility lib. for performance
+* [is_js](http://is.js.org/) - micro check library
+* [Mongoose](http://mongoosejs.com/) - object modeling tool for node.js
+* [Strongloop Cluster](https://www.npmjs.com/package/strong-cluster-control) - cluster control for node.js
+* [Chalk](https://www.npmjs.com/package/chalk) - terminal string styling
 
 ### Installation
 ##### Service
 
-Gezdir requires [Node.js](https://nodejs.org/) v6+ to run.
+Gezdir requires [Node.js](https://nodejs.org/en/download/) v6+ to run.
 Open the command prompt at root directory and install the dependencies then start the server. 
 ```
 $ npm i
