@@ -32,7 +32,7 @@ Gezdir uses a number of open source projects to work properly:
 
 ### Installation
 ##### Service
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/73cc2af70ebb33dcd991)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/2c263d75ea89570f5371)
 
 Gezdir requires [Node.js](https://nodejs.org/en/download/) v6+ to run.
 Open the command prompt at root directory and install the dependencies then start the server. 
