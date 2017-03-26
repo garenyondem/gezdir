@@ -31,5 +31,6 @@
 "ticket_accepted" = "Ticket accepted";
 "event_created" = "Event created";
 "reservation_complete" = "Reservation complete";
-"loggin_in" = "Logging In";
+"logging_in" = "Logging In";
 "search_address_or_location" = "Seach an address or a location";
+"quota_full" = "Quota full";

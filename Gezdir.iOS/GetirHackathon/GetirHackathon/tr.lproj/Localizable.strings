@@ -31,5 +31,6 @@
 "ticket_accepted" = "Talep kabul edildi";
 "event_created" = "Etkinlik oluşturuldu";
 "reservation_complete" = "Rezervasiyon tamamlandı";
-"loggin_in" = "Giriş Yapılıyor";
+"logging_in" = "Giriş Yapılıyor";
 "search_address_or_location" = "Bir adres veya konum arayın";
+"quota_full" = "Kota dolu";

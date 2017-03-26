@@ -42,13 +42,16 @@ class EventDetailsViewController: UIViewController {
             self.stackGuide.isHidden = true
             self.btnAttend.setTitle(NSLocalizedString("create_event", comment: ""), for: .normal)
         }
+        else if !self.event.isTicket, self.event.attendeeCount == self.event.quota {
+            self.btnAttend.setTitle(NSLocalizedString("quota_full", comment: ""), for: .disabled)
+            self.btnAttend.isEnabled = false
+        }
         
         self.lblEventName.text = self.event.name
         self.lblGuideName.text = self.event.guideName
         self.lblAtendeeCount.text = "\(self.event.attendeeCount)/\(self.event.quota!)"
         self.mapView.setRegion(MKCoordinateRegion(center: self.event.location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: true)
         self.add(annotation: self.event.annotation!)
-        
         
     }
     
