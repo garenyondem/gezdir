@@ -20,6 +20,8 @@ class MapViewController: UIViewController {
     
     var selectedEventToShow: Event?
     
+    @IBOutlet weak var btnAdd: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loggedIn), name: Notification.Name.loggedIn , object: nil)
@@ -30,6 +32,7 @@ class MapViewController: UIViewController {
             return
         }
         
+        self.btnAdd.layer.cornerRadius = self.btnAdd.frame.width/2
         self.updateUserLocationOnMap()
         
         self.refreshEvents()
@@ -41,9 +44,9 @@ class MapViewController: UIViewController {
     
     fileprivate func refreshEvents() {
         if let userLocation = LocationManager.shared.lastKnownLocation {
-            let groupType = self.segmentControl.selectedSegmentIndex == 0 ? GroupType.publicGroup : GroupType.publicGroup
-            Event.events(around: userLocation, for: groupType, completion: { [weak self] (eventList, error) in
-                
+            
+            let isTicket = self.segmentControl.selectedSegmentIndex == 1
+            Event.fetch(around: userLocation, isTicket: isTicket, completion: { [weak self] (eventList, error) in
                 if  error != nil,
                     case API.RequestError.serverSide(let message) = error! {
                     DispatchQueue.main.async {
@@ -58,13 +61,14 @@ class MapViewController: UIViewController {
                     return
                 }
                 
+                self?.eventList = eventList!
                 DispatchQueue.main.async {
-                    self?.eventList = eventList!
                     self?.populateMap()
                 }
                 
             })
         }
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,11 +84,18 @@ class MapViewController: UIViewController {
             self.selectedEventToShow = nil
         }
     }
+    
+    @IBAction func segmentControlValueChanged(_ sender: UISegmentedControl) {
+        self.mapView.removeAllEvents()
+        self.refreshEvents()
+    }
+    
 }
 
 // MARK: - Functions 
 extension MapViewController {
     fileprivate func populateMap() {
+        self.mapView.removeAllEvents()
         self.eventList.forEach { event in
             if let annotation = event.annotation {
                 self.add(annotation: annotation)

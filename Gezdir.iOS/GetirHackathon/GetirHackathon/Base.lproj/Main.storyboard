@@ -229,9 +229,12 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="q1s-Sg-rb5">
                                 <rect key="frame" x="16" y="72" width="343" height="29"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="Events"/>
+                                    <segment title="Tickets"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentControlValueChanged:" destination="M6C-dd-IlK" eventType="valueChanged" id="SOW-y4-oSI"/>
+                                </connections>
                             </segmentedControl>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vl4-Yq-Hn6">
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
@@ -248,6 +251,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="4"/>
                                 <state key="normal" title="+"/>
                                 <connections>
                                     <segue destination="0dB-Rx-ijd" kind="presentation" identifier="sgCreate" id="wQw-Id-dvN"/>
@@ -269,6 +273,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Gezdir" id="REw-zE-mpy"/>
                     <connections>
+                        <outlet property="btnAdd" destination="QWF-JL-THh" id="YjE-YI-iTj"/>
                         <outlet property="mapView" destination="Vl4-Yq-Hn6" id="n67-zK-A7t"/>
                         <outlet property="segmentControl" destination="q1s-Sg-rb5" id="4Ok-2y-6t6"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="sgLogin" id="J49-gp-tq6"/>
@@ -294,8 +299,8 @@
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DWW-nI-UoE">
                                     <rect key="frame" x="16" y="8" width="343" height="29"/>
                                     <segments>
-                                        <segment title="First"/>
-                                        <segment title="Second"/>
+                                        <segment title="Event"/>
+                                        <segment title="Ticket"/>
                                     </segments>
                                     <connections>
                                         <action selector="segmentGroupTypeValueChanged:" destination="Aaa-v7-bSf" eventType="valueChanged" id="4zJ-rf-aVq"/>
@@ -320,7 +325,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYT-gj-VwK">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYT-gj-VwK">
                                                     <rect key="frame" x="16" y="0.0" width="351" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>

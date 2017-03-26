@@ -9,11 +9,6 @@
 import Foundation
 import MapKit
 
-enum GroupType: String {
-    case privateGroup = "Private"
-    case publicGroup = "Public"
-}
-
 class Event {
     var eventId: String!
     var name: String!
@@ -26,23 +21,22 @@ class Event {
         }
     }
     var eventType: EventType!
-    var groupType: GroupType!
     var quota: Int!
     var attendeeCount: Int!
     var isAttending = false
     var guideName: String!
     
+    var isTicket = false
     var annotation: EventAnnotation?
     
     init() {}
     
-    init(name: String = "", creationDate: Date, expirationDate: Date, location: CLLocationCoordinate2D, eventType: EventType, groupType: GroupType, quota: Int) {
+    init(name: String = "", creationDate: Date, expirationDate: Date, location: CLLocationCoordinate2D, eventType: EventType, quota: Int) {
         self.name = name
         self.creationDate = creationDate
         self.expirationDate = expirationDate
         self.location = location
         self.eventType = eventType
-        self.groupType = groupType
         self.quota = quota
     }
     
@@ -55,23 +49,26 @@ class Event {
             let expirationDate = json["expirationDate"] as? String,
             let locationJson = json["location"] as? [String: Any],
             let eventTypeJson = json["eventType"] as? [String: Any],
-            let groupTypeString = json["groupType"] as? String,
-            let quota = json["quota"] as? Int,
-            let attendees = json["attendees"] as? [Any],
-            let attending = json["attending"] as? Bool,
-            let guideName = json["guideName"] as? String
+            let quota = json["quota"] as? Int
             else { return nil }
+       
+        if let attendees = json["attendees"] as? [Any],
+            let attending = json["attending"] as? Bool,
+            let guideName = json["guideName"] as? String {
+            self.attendeeCount = attendees.count
+            self.isAttending = attending
+            self.guideName = guideName
+        }
+        else {
+            self.isTicket = true
+        }
         
         self.eventId = eventId
         self.name = name
         self.creationDate = creationDateString.dateFromString
         self.expirationDate = expirationDate.dateFromString
         self.eventType = EventType(with: eventTypeJson)
-        self.groupType = GroupType(rawValue: groupTypeString)
         self.quota = quota
-        self.attendeeCount = attendees.count
-        self.isAttending = attending
-        self.guideName = guideName
         
         if let coordinatesJson = locationJson["coordinates"] as? [Any],
             let long = coordinatesJson[0] as? Double,
@@ -85,15 +82,7 @@ class Event {
     }
     
     var isValidForRequest: Bool {
-        if self.groupType == GroupType.privateGroup,
-            self.creationDate != nil,
-            self.expirationDate != nil,
-            self.location != nil,
-            self.eventType != nil{
-            return true
-        }
-        else if self.groupType == GroupType.publicGroup,
-            !self.name.isEmpty,
+        if !self.name.isEmpty,
             self.creationDate != nil,
             self.expirationDate != nil,
             self.location != nil,

@@ -31,7 +31,6 @@ class CreateEventTableViewController: UITableViewController {
 
         self.event = Event()
         self.event.quota = 0
-        self.event.groupType = GroupType.privateGroup
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,15 +69,16 @@ class CreateEventTableViewController: UITableViewController {
     
     // MARK: - IBActions
     @IBAction func btnSavePressed(_ sender: UIBarButtonItem) {
-        if self.txtName.text!.isEmpty && self.event.groupType == GroupType.publicGroup {
+        if self.txtName.text!.isEmpty {
             self.alert(title: NSLocalizedString("warning", comment: ""), message: NSLocalizedString("empty_field", comment: ""))
             return
         }
         
         self.event.name = self.txtName.text
+        self.event.isTicket = self.segmentGroupType.selectedSegmentIndex == 1
         
         if self.event.isValidForRequest {
-            self.event.create(completion: { [weak self] (event, error) in
+            self.event.createActivity(completion: { [weak self] (event, error) in
                 if  error != nil,
                     case API.RequestError.serverSide(let message) = error! {
                     DispatchQueue.main.async {
@@ -109,37 +109,7 @@ class CreateEventTableViewController: UITableViewController {
     }
     
     @IBAction func segmentGroupTypeValueChanged(_ sender: UISegmentedControl) {
-        self.event.groupType = sender.selectedSegmentIndex == 0 ? .privateGroup : .publicGroup
         self.tableView.reloadData()
-    }
-}
-
-// MARK: - TableView Delegate
-extension CreateEventTableViewController {
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let isPrivate = self.segmentGroupType.selectedSegmentIndex == 0
-        if isPrivate {
-            switch indexPath.section {
-            case 0, 4:
-                return 0.1
-            default:
-                return 52
-            }
-        }
-        return 52
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let isPrivate = self.segmentGroupType.selectedSegmentIndex == 0
-        if isPrivate {
-            switch section {
-            case 0, 4:
-                return 0.1
-            default:
-                return 22
-            }
-        }
-        return 22
     }
 }
 
