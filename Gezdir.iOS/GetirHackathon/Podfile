@@ -6,5 +6,5 @@ target 'GetirHackathon' do
   use_frameworks!
 
   # Pods for GetirHackathon
-  pod 'SwiftyJSON'
+  
 end
