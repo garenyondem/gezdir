@@ -43,6 +43,8 @@ or
 $ npm i
 $ npm start
 ```
+App's default port is 8810
+
 ##### IOS
 
 <img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios1.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios2.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios3.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios4.png" width="250"/><img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/ios5.png" width="250"/>
