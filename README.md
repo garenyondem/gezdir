@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://oi64.tinypic.com/dlm73r.jpg" height="100">
+  <img src="https://raw.githubusercontent.com/wiki/garenyondem/gezdir/gezdir_logo.fw.png" height="100">
 </p>
 
 Gezdir is a crowd-powered entertainment platform where people come together to discover new places, share experiences and know each other.
